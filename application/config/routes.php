@@ -53,8 +53,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['user/register'] = 'user/register';
 $route['user/check_username_existed/(:any)'] = 'user/check_username_existed';
 $route['user/check_email_existed/(:any)'] = 'user/check_email_existed';
+$route['user/login'] = 'user/login';
+$route['user/active'] = 'user/active';
+$route['user/(:any)'] = 'user/profile';
+$route['user'] = 'user/profile';
 
+$route['home/view'] = 'home/view';
+$route['home/(:any)'] = 'home/view';
+$route['home'] = 'home/view';
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'home/view';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

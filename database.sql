@@ -12,7 +12,8 @@ CREATE TABLE `users` (
   `registe_ip` varchar(16) not null,
   `salt` varchar(16) DEFAULT NULL,
   `active_code` varchar(32) DEFAULT NULL,
-  `verified` tinyint NOT NULL DEFAULT 0,
+  `active_code_alive_time` varchar(32) DEFAULT NULL,
+  `actived` tinyint NOT NULL DEFAULT 0,
   `usertype` tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

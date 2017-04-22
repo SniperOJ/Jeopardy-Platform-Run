@@ -367,45 +367,229 @@ class User extends CI_Controller {
 		$user_info['usertype'] = 0;
 
 		$user_info['active_code'] = $this->get_active_code();
-		$user_info['verified'] = 0;
+		$user_info['active_code_alive_time'] = $time + $this->config->item('sess_expiration');
+		$user_info['actived'] = 0;
 
 		return $user_info;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/* Important function */
-
-	public function is_user_verified($user_id)
+	/* Status judge */
+	public function is_logined()
 	{
-		
+		if($this->session->user_id == NULL){
+			return false;
+		}else{
+			$session_alive_time = $this->session->session_alive_time;
+			if($this->is_overdue($session_alive_time)){
+				return false;
+			}else{
+				return true;
+			}
+		}
 	}
+
+	public function is_overdue($alive_time)
+	{
+		return (time() > $alive_time);
+	}
+
+	public function is_user_actived($user_id)
+	{
+		return $this->user_model->is_user_actived($user_id);
+	}
+
+	public function login()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('captcha', 'Captcha', 'trim|required');
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '表单验证失败!',
+			)));
+		}
+		else
+		{
+			/* 获取 POST 数据 */
+			$captcha = $this->input->post('captcha');
+			$user_info = array(
+				'username' => $this->input->post('username'), 
+				'password' => $this->input->post('password'), 
+			);
+
+			/* 验证码 */
+			if($this->verify_captcha($captcha) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
+				)));
+			}
+
+			/* 用户名长度 */
+			if($this->check_username_length($user_info['username']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '用户名长度必须大于等于4个字符小于等于16个字符!',
+				)));
+			}
+
+			/* 用户名内容 */
+			if($this->check_username_bad_chars($user_info['username']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '用户名只可以由数字和字母组成!请不要在用户名中使用特殊字符!',
+				)));
+			}
+
+			/* 密码长度 */
+			if($this->check_password_length($user_info['password']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '密码长度必须大于等于6个字符小于等于16个字符!',
+				)));
+			}
+
+			/* 密码内容 */
+			if($this->check_password_bad_chars($user_info['password']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '请不要在密码中包含特殊字符!',
+				)));
+			}
+
+			/* 用户名称是否已经存在 */
+			if($this->do_check_username_existed($user_info['username']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '用户名不存在!',
+				)));
+			}
+
+			$user_info['user_id'] = $this->user_model->get_user_id_by_username($user_info['username']);
+
+			if($this->do_login($user_info['user_id'], $user_info['password']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '登录失败!',
+				)));
+			}
+
+			if($this->is_user_actived($user_info['user_id']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '请先登录您的邮箱点击邮件中的激活链接激活您的账号再登录!',
+				)));
+			}
+
+			echo json_encode(array(
+				'status' => 1, 
+				'message' => '登录成功!',
+			));
+		}
+	}
+
+
+	public function do_login($user_id, $password)
+	{
+		$user_info = $this->user_model->get_user_info($user_id);
+		$current_password = $user_info['password'];
+		$salt = $user_info['salt'];
+		$encrypted_password = $this->get_encrypted_password($password, $salt);
+		return ($encrypted_password === $current_password);
+	}
+
+
+
+
+	public function active()
+	{
+		$active_code = $this->uri->segment(3);
+
+		if($this->user_model->is_active_code_existed($active_code) == false){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '激活码不存在!',
+			)));
+		}
+
+		$user_id = $this->user_model->get_user_id_by_active_code($active_code);
+		$user_info = $this->user_model->get_user_info($user_id);
+		$active_code_alive_time = $user_info['active_code_alive_time'];
+
+		if ($this->is_overdue($active_code_alive_time) === true){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '您的激活码已经过期!请与管理员联系!',
+			)));
+		}
+
+		if ($this->is_user_actived($user_id) === true){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '您的账号已经激活!请不用重新激活!',
+			)));
+		}
+
+		if($this->user_model->active_user($user_id) == false){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '激活失败!请与管理员联系!',
+			)));
+		}
+
+		echo json_encode(array(
+			'status' => 1, 
+			'message' => '激活成功!',
+		));
+	}
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/* Captcha */
 	public function create_captcha()
@@ -414,40 +598,6 @@ class User extends CI_Controller {
 	}
 
 
-	/* Status judge */
-	public function is_logined()
-	{
-
-	}
-
-	public function is_overdue($alive_time)
-	{
-		
-	}
-
-
-	public function login()
-	{
-
-	}
-
-	public function do_login($username, $password)
-	{
-		
-	}
-
-
-
-
-	public function active()
-	{
-
-	}
-
-	public function do_active($active_code)
-	{
-		
-	}
 
 	public function do_reset($user_id, $new_password)
 	{
