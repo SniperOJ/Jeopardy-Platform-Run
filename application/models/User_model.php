@@ -46,10 +46,8 @@ class User_model extends CI_Model {
 	}
 
 	/* Create user */
-	public function create_user($user_info)
+	public function register($user_info)
 	{
 		# code...
 	}
-
-	/* Search user */
 }
