@@ -386,6 +386,13 @@ class User extends CI_Controller {
 
 	public function login()
 	{
+		if ($this->is_logined){
+			echo json_encode(array(
+				'status' => 1, 
+				'message' => '登录成功!',
+			));
+			return true;
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -477,9 +484,34 @@ class User extends CI_Controller {
 				'status' => 1, 
 				'message' => '登录成功!',
 			));
+
+			/* set session */
+			$this->set_session_by_username($username);
 		}
 	}
 
+	public function set_session_by_username($username)
+	{
+	    // get user_id
+	    $user_id = $this->get_user_id($username);
+	    // set session
+	    $this->set_session_by_user_id($user_id);
+	}
+
+	public function set_session_by_user_id($user_id)
+	{
+	    // set session
+	    $data = array(
+	        'user_id' => $user_id,
+	        'username' => $this->get_username($user_id),
+	        'email' => $this->get_email($user_id),
+	        'score' => $this->get_score($user_id),
+	        'college' => $this->get_college($user_id),
+	        'usertype' => $this->get_usertype($user_id),
+	        'session_alive_time' => (time() + $this->config->item('sess_expiration')),
+	    );
+	    $this->session->set_userdata($data);
+	}
 
 	public function do_login($user_id, $password)
 	{
@@ -533,6 +565,9 @@ class User extends CI_Controller {
 
 		// destory active code
 		$this->destory_active_code($user_id);
+
+		/* set session */
+		$this->set_session_by_user_id($user_id);
 	}
 
 	public function verify_captcha($captcha)
@@ -749,6 +784,9 @@ class User extends CI_Controller {
 
 			// destory reset_code
 			$this->destory_reset_code($user_id);
+
+			// set session
+			$this->set_session_by_user_id($user_id);
 		}
 	}
 
