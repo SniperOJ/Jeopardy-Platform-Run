@@ -52,6 +52,16 @@ class User_model extends CI_Model {
 		return intval($result['user_id']);
 	}
 
+	public function get_user_id_by_reset_code($reset_code)
+	{
+		$query = $this->db
+			->where('reset_code', $reset_code)
+			->get('reset_password');
+		$result = $query->row_array();
+		return intval($result['user_id']);
+	}
+
+
 	/* Existed */
 	public function is_email_existed($email)
 	{
@@ -65,6 +75,11 @@ class User_model extends CI_Model {
 	    return ($query->num_rows() > 0);
 	}
 
+	public function is_reset_code_existed($reset_code)
+	{
+		$query = $this->db->get_where('reset_password', array('reset_code' => $reset_code));
+		return ($query->num_rows() > 0);
+	}
 
 	public function is_username_existed($username)
 	{
@@ -89,5 +104,33 @@ class User_model extends CI_Model {
 	public function active_user($user_id)
 	{
 		return $this->db->set('actived', '1')->where('user_id', $user_id)->update('users');
+	}
+
+	public function forget_password($reset_data)
+	{
+		 return $this->db->insert('reset_password', $reset_data);
+	}
+
+	public function get_reset_code_code_info($reset_code)
+	{
+		$query = $this->db->get_where('reset_password', array('reset_code' => $reset_code));
+		return $query->row_array();
+	}
+
+	public function do_reset_password($user_id, $new_password_data)
+	{
+		return $this->db->set($new_password_data)->where('user_id', $user_id)->update('users');
+	}
+
+
+	public function destory_reset_code($user_id)
+	{
+		$this->user_model->destory_reset_code($user_id);
+		return $this->db->set('verified', '1')->where('user_id', $user_id)->update('reset_password');
+	}
+
+	public function destory_active_code($user_id)
+	{
+		return $this->db->set('active_code', '')->where('user_id', $user_id)->update('users');
 	}
 }

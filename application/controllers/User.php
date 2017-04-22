@@ -110,7 +110,7 @@ class User extends CI_Controller {
 	public function send_reset_code($reset_code, $target)
 	{
 		$subject = '[No Reply] Sniper OJ Reset Password Email';
-		$content = "you can reset your password by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.cn/user/verify/".$active_code."\n";
+		$content = "you can reset your password by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.cn/user/verify/".$reset_code."\n";
 		return $this->send_email($subject, $content, $target);
 	}
 
@@ -145,7 +145,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('email', 'Email', 'trim|required');
 
-		if ($this->form_validation->run() === FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			die(json_encode(array(
 				'status' => 0, 
@@ -177,7 +177,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 
-		if ($this->form_validation->run() === FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			die(json_encode(array(
 				'status' => 0, 
@@ -213,7 +213,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('college', 'College', 'trim|required');
 		$this->form_validation->set_rules('captcha', 'Captcha', 'trim|required');
 
-		if ($this->form_validation->run() === FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			die(json_encode(array(
 				'status' => 0, 
@@ -393,7 +393,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('captcha', 'Captcha', 'trim|required');
 
-		if ($this->form_validation->run() === FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			die(json_encode(array(
 				'status' => 0, 
@@ -530,6 +530,9 @@ class User extends CI_Controller {
 			'status' => 1, 
 			'message' => '激活成功!',
 		));
+
+		// destory active code
+		$this->destory_active_code($user_id);
 	}
 
 	public function verify_captcha($captcha)
@@ -563,13 +566,209 @@ class User extends CI_Controller {
 
 
 
-	public function do_reset($user_id, $new_password)
-	{
 
+
+
+	public function forget()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('captcha', 'Captcha', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '表单验证失败!',
+			)));
+		}else{
+
+			/* 获取 POST 数据 */
+			$captcha = $this->input->post('captcha');
+			$reset_data = array(
+				'email' => $this->input->post('email'),
+			);
+
+			/* 验证码 */
+			if($this->verify_captcha($captcha) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
+				)));
+			}
+
+			/* Email是否合法 */
+			if($this->check_email($reset_data['email']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '请检查您的邮箱格式是否合法!',
+				)));
+			}
+
+			/* 邮箱是否已经被注册 */
+			if($this->do_check_email_existed($reset_data['email']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '该邮箱并没有注册账号!',
+				)));
+			}
+
+			$reset_data = $this->complete_reset_data($reset_data);
+
+			/* do forget */
+			if($this->do_forget($reset_data) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '找回密码失败!请与管理员联系!',
+				)));
+			}
+
+			if($this->send_reset_code($reset_data['reset_code'], $reset_data['email']) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '发送重置码失败!请与管理员联系!',
+				)));
+			}
+
+			echo json_encode(array(
+				'status' => 1, 
+				'message' => '重置邮件发送成功!请登录您的邮箱点击重置链接来重置您的密码!',
+			));
+		}
 	}
+
+	public function complete_reset_data($reset_data)
+	{
+		$time = time();
+		$reset_data['user_id'] = $this->user_model->get_user_id_by_email($reset_data['email']);
+		$reset_data['reset_code'] = $this->get_reset_code();
+		$reset_data['reset_code_alive_time'] = $time + $this->config->item('sess_expiration');
+		$reset_data['verified'] = 0;
+		return $reset_data;
+	}
+
+	public function do_forget($reset_data)
+	{
+		return $this->user_model->forget_password($reset_data);
+	}
+
+
+	public function verify_reset_code()
+	{
+		$reset_code = $this->uri->segment(3);
+		if($this->user_model->is_reset_code_existed($reset_code) == false){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '重置码不存在!',
+			)));
+		}
+
+		$reset_code_info = $this->user_model->get_reset_code_code_info($reset_code);
+
+		$email = $reset_code_info['email'];
+		$current_reset_code = $reset_code_info['reset_code'];
+		$reset_code_alive_time = intval($reset_code_info['reset_code_alive_time']);
+
+		if($this->is_overdue($reset_code_alive_time)){
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '充值码已过期!请重新申请重置码!',
+			)));
+		}
+
+		// 这里直接将 reset_code 返回 , 前端收到以后添加到表单隐藏域中
+		// 在发送新密码的时候需要第二次进行验证
+		// 或者其实用 Cookie 应该也行
+		echo json_encode(array(
+			'status' => 1, 
+			'message' => $reset_code,
+		));
+	}
+
 
 	public function reset()
 	{
-		
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('reset_code', 'Captcha', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '表单验证失败!',
+			)));
+		}
+		else
+		{
+			/* 获取 POST 数据 */
+			$new_password = $this->input->post('password');
+			$reset_code = $this->input->post('reset_code');
+
+			if($this->user_model->is_reset_code_existed($reset_code) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '重置码不存在!',
+				)));
+			}
+
+			/* 密码长度 */
+			if($this->check_password_length($new_password) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '密码长度必须大于等于6个字符小于等于16个字符!',
+				)));
+			}
+
+			/* 密码内容 */
+			if($this->check_password_bad_chars($new_password) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '请不要在密码中包含特殊字符!',
+				)));
+			}
+
+			$user_id = $this->user_model->get_user_id_by_reset_code($reset_code);
+			$new_salt = $this->get_salt();
+
+			if($this->do_reset($user_id, $new_password, $new_salt) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '重置密码失败!请与管理员联系!',
+				)));
+			}
+
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '重置密码成功!',
+			)));
+
+			// destory reset_code
+			$this->destory_reset_code($user_id);
+		}
+	}
+
+	public function do_reset($user_id, $new_password, $new_salt)
+	{
+		$encrypted_password = $this->get_encrypted_password($new_password, $new_salt);
+		$new_password_data = array(
+			'password' => $encrypted_password,
+			'salt' => $new_salt,
+		);
+		return $this->user_model->do_reset_password($user_id, $new_password_data);
+	}
+
+	public function destory_reset_code($user_id)
+	{
+		$this->user_model->destory_reset_code($user_id);
+	}
+
+	public function destory_active_code($user_id)
+	{
+		$this->user_model->destory_active_code($user_id);
 	}
 }

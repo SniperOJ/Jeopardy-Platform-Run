@@ -58,7 +58,6 @@ CREATE TABLE `reset_password` (
   `reset_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `email` varchar(64) DEFAULT NULL,
-  `salt` varchar(16) DEFAULT NULL,
   `reset_code` varchar(32) DEFAULT NULL,
   `reset_code_alive_time` int DEFAULT 0,
   `verified` tinyint NOT NULL DEFAULT 0,

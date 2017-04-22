@@ -54,7 +54,10 @@ $route['user/register'] = 'user/register';
 $route['user/check_username_existed/(:any)'] = 'user/check_username_existed';
 $route['user/check_email_existed/(:any)'] = 'user/check_email_existed';
 $route['user/login'] = 'user/login';
-$route['user/active'] = 'user/active';
+$route['user/active/(:any)'] = 'user/active';
+$route['user/verify/(:any)'] = 'user/verify_reset_code';
+$route['user/forget'] = 'user/forget';
+$route['user/reset'] = 'user/reset';
 $route['user/(:any)'] = 'user/profile';
 $route['user'] = 'user/profile';
 
