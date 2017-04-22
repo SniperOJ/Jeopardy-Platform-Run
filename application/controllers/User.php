@@ -37,7 +37,7 @@ class User extends CI_Controller {
 
 	public function check_college_name_length($college_name)
 	{
-		return $this->check_length($username, 1, 64);
+		return $this->check_length($username, 3, 64);
 	}
 
 
@@ -90,8 +90,6 @@ class User extends CI_Controller {
 
 
 
-
-
 	public function is_user_verified($user_id)
 	{
 		
@@ -111,22 +109,42 @@ class User extends CI_Controller {
 
 
 	/* Send email */
-	public function send_email($content, $target)
+	public function send_email($subject, $content, $target)
 	{
-		
+		$this->email->from('admin@sniperoj.cn', 'admin');
+		$this->email->to($target);
+		$this->email->subject($subject);
+		$this->email->message($content);
+		if($this->email->send()==1){ 
+			return true;
+		}else{ 
+			return false;
+		} 
 	}
 
 	public function send_active_code($active_code, $target)
 	{
-		
+		$subject = '[No Reply] Sniper OJ Register Email';
+		$content = "Thank you for registering this website!\n\
+			you can activate your account by visiting the following link, which is valid for 2 hours.\n\
+			Your active code : http://www.sniperoj.cn/user/active/".$active_code."\n";
+		$this->send_email($subject, $content, $target);
 	}
 
 	public function send_reset_code($reset_code, $target)
 	{
-		
+		$subject = '[No Reply] Sniper OJ Reset Password Email';
+		$content = "you can reset your password by visiting the following link、
+			, which is valid for 2 hours.\n、
+			Your active code : http://www.sniperoj.cn/user/verify/".$active_code."\n"；
+		$this->send_email($subject, $content, $target);
 	}
 
-
+	// TODO
+	public function get_hidden_email($email)
+	{
+		return $email;
+	}
 
 	/* Status judge */
 	public function is_logined()
@@ -210,7 +228,7 @@ class User extends CI_Controller {
 			if($this->check_username_length($user_info['username']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '用户名长度必须大于等于4个字符小于等于16个字符!',
 				)));
 			}
 
@@ -218,7 +236,7 @@ class User extends CI_Controller {
 			if($this->check_username_bad_chars($user_info['username']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '用户名只可以由数字和字母组成!请不要在用户名中使用特殊字符!',
 				)));
 			}
 
@@ -226,7 +244,7 @@ class User extends CI_Controller {
 			if($this->check_password_length($user_info['password']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '密码长度必须大于等于6个字符小于等于16个字符!',
 				)));
 			}
 
@@ -234,7 +252,7 @@ class User extends CI_Controller {
 			if($this->check_password_bad_chars($user_info['password']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '请不要在密码中包含特殊字符!',
 				)));
 			}
 
@@ -242,7 +260,7 @@ class User extends CI_Controller {
 			if($this->check_college_name_length($user_info['college']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '学校名称必须大于等于3个字符小于等于64个字符!',
 				)));
 			}
 
@@ -250,7 +268,7 @@ class User extends CI_Controller {
 			if($this->check_college_bad_chars($user_info['college']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '请不要在学校名称中包含特殊字符!',
 				)));
 			}
 
@@ -258,7 +276,7 @@ class User extends CI_Controller {
 			if($this->check_email($user_info['email']) == false){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '请检查您的邮箱格式是否合法!',
 				)));
 			}
 
@@ -266,7 +284,7 @@ class User extends CI_Controller {
 			if($this->check_username_existed($user_info['username']) == true){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '用户名已存在!',
 				)));
 			}
 
@@ -274,24 +292,61 @@ class User extends CI_Controller {
 			if($this->check_email_existed($user_info['email']) == true){
 				die(json_encode(array(
 					'status' => 0, 
-					'message' => '!',
+					'message' => '该邮箱已被注册!',
 				)));
 			}
 
 			/* 注册 */
-			$this->do_register($user_info);
+			$user_info = $this->complete_user_info($user_info);
+
+			/* 插入数据库 */
+			if($this->user_model->register($user_info) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '注册失败!请与管理员联系!',
+				)));
+			}
+
+			/* 发送激活码 */
+			if($this->send_active_code($user_info['active_code'], $email) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '激活码发送失败!请与管理员联系!',
+				)));
+			}
+
+			echo json_encode(array(
+				'status' => 1, 
+				'message' => '注册成功!请登录您的邮箱('.$this->get_hidden_email($user_info['email']).')并点击激活邮件中的激活链接来激活您的账号!',
+			));
 		}
 	}
 
-	public function do_register($user_info)
+	/* 完善其他必要的用户信息 */
+	public function complete_user_info($user_info)
 	{
-		$this->user_model->register($user_info);
+		$time = time();
+		
+		$user_info['password'] = $this->get_encrypted_password($user_info['password']);
+		$user_info['salt'] = random_string('alnum', 16);
+
+		$user_info['score'] = 0;
+
+		$user_info['registe_time'] = $time;
+		$user_info['registe_ip'] = $this->input->ip_address(),
+		
+		$user_info['usertype'] = 0;
+
+		$user_info['active_code'] = random_string('alnum', 32);
+		$user_info['verified'] = 0;
+
+		return $user_info;
 	}
 
 
 	public function active()
 	{
-		
+
 	}
 
 	public function do_active($active_code)

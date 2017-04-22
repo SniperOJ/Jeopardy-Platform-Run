@@ -29,14 +29,16 @@ class User_model extends CI_Model {
 	}
 
 	/* Existed */
-	public function is_username_existed($username)
-	{
-		# code...
-	}
-
 	public function is_email_existed($email)
 	{
-		# code...
+	    $query = $this->db->get_where('users', array('email' => $email));
+	    return ($query->num_rows() > 0);
+	}
+
+	public function is_username_exist($username)
+	{
+	    $query = $this->db->get_where('users', array('username' => $username));
+	    return ($query->num_rows() > 0);
 	}
 
 	/* All user */
@@ -48,6 +50,6 @@ class User_model extends CI_Model {
 	/* Create user */
 	public function register($user_info)
 	{
-		# code...
+		return $this->db->insert('users', $data));
 	}
 }
