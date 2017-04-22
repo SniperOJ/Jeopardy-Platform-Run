@@ -7,7 +7,7 @@ class User_model extends CI_Model {
 	}
 
 	/* Signle user */
-	private function get_user_info($$user_id)
+	private function get_user_info($user_id)
 	{
 		# code...
 	}
@@ -35,7 +35,7 @@ class User_model extends CI_Model {
 	    return ($query->num_rows() > 0);
 	}
 
-	public function is_username_exist($username)
+	public function is_username_existed($username)
 	{
 	    $query = $this->db->get_where('users', array('username' => $username));
 	    return ($query->num_rows() > 0);
@@ -50,6 +50,6 @@ class User_model extends CI_Model {
 	/* Create user */
 	public function register($user_info)
 	{
-		return $this->db->insert('users', $data));
+		return $this->db->insert('users', $user_info);
 	}
 }

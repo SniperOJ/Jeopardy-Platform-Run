@@ -51,6 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['user/register'] = 'user/register';
+$route['user/check_username_existed/(:any)'] = 'user/check_username_existed';
+$route['user/check_email_existed/(:any)'] = 'user/check_email_existed';
+
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

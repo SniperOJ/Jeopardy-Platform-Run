@@ -1,4 +1,4 @@
-CREATE DATABASE `SniperOJ` /*!40100 DEFAULT CHARACTER SET utf8 */
+CREATE DATABASE `beta` /*!40100 DEFAULT CHARACTER SET utf8 */
 
 /* Class */
 CREATE TABLE `users` (
@@ -9,8 +9,9 @@ CREATE TABLE `users` (
   `college` varchar (64) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `registe_time` int DEFAULT 0,
-  `registe_ip` varchar(16) not null;
+  `registe_ip` varchar(16) not null,
   `salt` varchar(16) DEFAULT NULL,
+  `active_code` varchar(32) DEFAULT NULL,
   `verified` tinyint NOT NULL DEFAULT 0,
   `usertype` tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (`user_id`)
