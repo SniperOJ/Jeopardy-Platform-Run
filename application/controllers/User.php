@@ -490,9 +490,6 @@ class User extends CI_Controller {
 		return ($encrypted_password === $current_password);
 	}
 
-
-
-
 	public function active()
 	{
 		$active_code = $this->uri->segment(3);
@@ -561,8 +558,10 @@ class User extends CI_Controller {
 		$show = floor($length/2);
 		$hide = $length - $show;
 		$replace = str_repeat("*", $hide);
-		return substr_replace ( $mail_parts[0] , $replace , $show, $hide ) . "@" . substr_replace($mail_parts[1], "*", 0, 1);
+		return substr_replace ( $mail_parts[0] , $replace , $show, $hide ) . "@" . substr_replace($mail_parts[1], "**", 0, 2);
 	}
+
+
 
 	public function do_reset($user_id, $new_password)
 	{
