@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('user_model');
 		$this->load->config('email');
 		$this->load->helper('string');
 		$this->load->library('email');
@@ -25,7 +26,6 @@ class User extends CI_Controller {
 	{
 		# code...
 	}
-
 
 	/* Check form item */
 	public function check_bad_chars($word, $bad_chars)
@@ -67,7 +67,6 @@ class User extends CI_Controller {
 	{
 		# code...
 	}
-
 
 	/* Captcha */
 	public function create_captcha()
@@ -113,7 +112,6 @@ class User extends CI_Controller {
 		
 	}
 
-
 	/* Salt */
 	public function get_salt()
 	{
@@ -146,6 +144,4 @@ class User extends CI_Controller {
 	{
 		# code...
 	}
-
 }
-

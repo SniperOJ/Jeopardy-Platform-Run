@@ -23,6 +23,7 @@
 			<li><a href="javascript:load_settings();"><span ><p align=center ><font size='5'>设置<span></font></p></a></li>
 		</ul>
 	</div>
+	<!-- left sidebar line -->
 	<div class="morph-shape" data-morph-open="M300-10c0,0,295,164,295,410c0,232-295,410-295,410" data-morph-close="M300-10C300-10,5,154,5,400c0,232,295,410,295,410">
 		<svg width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="none">
 			<path fill="none" d="M300-10c0,0,0,164,0,410c0,232,0,410,0,410"/>
@@ -45,7 +46,7 @@
 
 <!-- right side bar -->
 <!-- rank -->
-<nav id="cd-lateral-nav">
+<nav id="cd-lateral-nav" class="rank-container">
 	<div class="rank-item" style="text-align: center;"><p>AAA</p><br></div>
 	<div class="rank-item" style="text-align: center;"><p>AAA</p><br></div>
 	<div class="rank-item" style="text-align: center;"><p>AAA</p><br></div>
@@ -55,6 +56,6 @@
 
 
 <!-- main container -->
-<div style="margin:120px;text-align: center;">
+<div class="main-container" style="margin:120px;text-align: center;">
 
 </div>
