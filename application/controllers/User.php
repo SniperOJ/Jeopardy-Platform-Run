@@ -115,20 +115,6 @@ class User extends CI_Controller {
 	}
 
 
-	//TODO
-	public function verify_captcha($captcha_content)
-	{
-		return true;
-	}
-
-	// TODO
-	public function get_masked_email($email)
-	{
-		return $email;
-	}
-
-
-
 	/* Password */
 	public function get_encrypted_password($password, $salt)
 	{
@@ -549,55 +535,34 @@ class User extends CI_Controller {
 		));
 	}
 
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/* Captcha */
-	public function create_captcha()
+	public function verify_captcha($captcha)
 	{
-		
+		// First, delete old captchas
+		$expiration = time() - 7200; // Two hour limit
+		$this->db->where('captcha_time < ', $expiration)
+			->delete('captcha');
+		// Then see if a captcha exists:
+		$sql = 'SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?';
+		$binds = array($captcha, $this->input->ip_address(), $expiration);
+		$query = $this->db->query($sql, $binds);
+		$row = $query->row();
+		if ($row->count > 0)
+		{
+			return true;
+		}else{
+			return false;
+		}
 	}
 
-
+	public function get_masked_email($email)
+	{
+		$mail_parts = explode("@", $email);
+		$length = strlen($mail_parts[0]);
+		$show = floor($length/2);
+		$hide = $length - $show;
+		$replace = str_repeat("*", $hide);
+		return substr_replace ( $mail_parts[0] , $replace , $show, $hide ) . "@" . substr_replace($mail_parts[1], "*", 0, 1);
+	}
 
 	public function do_reset($user_id, $new_password)
 	{

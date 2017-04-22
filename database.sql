@@ -51,8 +51,7 @@ CREATE TABLE captcha (
     word varchar(20) NOT NULL,
     PRIMARY KEY `captcha_id` (`captcha_id`),
     KEY `word` (`word`)
-);
-
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /* Verify and Active */
 CREATE TABLE `reset_password` (
