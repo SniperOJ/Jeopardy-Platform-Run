@@ -24,13 +24,13 @@ CREATE TABLE `challenges` (
   `description` varchar(512) NOT NULL,
   `flag` varchar(64) NOT NULL,
   `score` int NOT NULL DEFAULT 0,
-  `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'others') DEFAULT 'others',
+  `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'others',
   `online_time` int NOT NULL,
   `visit_times` int DEFAULT 0,
   `fixing` tinyint DEFAULT 0,
   `resource` varchar(512) DEFAULT NULL,
   `document` varchar(512) DEFAULT NULL,
-  ``
+  `author_id` int NOT NULL DEFAULT 1,
   PRIMARY KEY (`challenge_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -97,3 +97,9 @@ CREATE TABLE `subscribe_log` (
 CREATE TABLE `click_log` (
 
 )
+
+
+alter table `challenges` add `author_id` int NOT NULL DEFAULT 1;
+alter table `challenges` modify `author_id` int NOT NULL DEFAULT 1;
+
+alter table `challenges` modify `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'other',

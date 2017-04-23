@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 	public function view()
 	{
 		$this->load->view('/templates/header');
-		// $this->load->view('/navigation_bar/navigation_bar');
+		$this->load->view('/navigation_bar/navigation_bar');
 		$this->load->view('/home/content');
 		$this->load->view('/templates/footer');
 	}

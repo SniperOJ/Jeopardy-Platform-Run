@@ -61,6 +61,15 @@ class User_model extends CI_Model {
 		return intval($result['user_id']);
 	}
 
+	public function get_username_by_user_id($user_id)
+	{
+		$query = $this->db
+			->select('username')
+			->where('user_id',$user_id)
+			->get('users');
+		$result = $query->row_array()['username'];
+		return $result;
+	}
 
 	/* Existed */
 	public function is_email_existed($email)

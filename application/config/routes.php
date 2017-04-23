@@ -50,6 +50,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['challenge/get_all_challenges'] = 'challenge/get_all_challenges';
+$route['challenge/get_challenge_info/(:num)'] = 'challenge/get_challenge_info';
+$route['challenge/get_type_challenges/(:any)'] = 'challenge/get_type_challenges';
+$route['challenge/create'] = 'challenge/create_challenge';
+$route['challenge/update'] = 'challenge/update_challenge';
+$route['challenge/submit'] = 'challenge/submit';
+$route['challenge/delete/(:num)'] = 'challenge/delete_challenge';
+$route['challenge/progress'] = 'challenge/progress';
+$route['challenge/(:any)'] = 'challenge/view';
+$route['challenge'] = 'challenge/view';
+
 $route['user/register'] = 'user/register';
 $route['user/check_username_existed'] = 'user/check_username_existed';
 $route['user/check_email_existed'] = 'user/check_email_existed';
@@ -60,12 +71,15 @@ $route['user/active/(:any)'] = 'user/active';
 $route['user/verify/(:any)'] = 'user/verify_reset_code';
 $route['user/forget'] = 'user/forget';
 $route['user/reset'] = 'user/reset';
+$route['user/logout'] = 'user/logout';
 $route['user/(:any)'] = 'user/profile';
 $route['user'] = 'user/profile';
 
 $route['home/view'] = 'home/view';
 $route['home/(:any)'] = 'home/view';
 $route['home'] = 'home/view';
+
+$route['(:any)'] = 'home/view';
 
 $route['default_controller'] = 'home/view';
 $route['404_override'] = '';
