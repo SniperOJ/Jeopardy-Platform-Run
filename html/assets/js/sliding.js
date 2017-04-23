@@ -5,6 +5,10 @@ $(function() {
 	});
 });
 
+$(function(){
+	// default open
+	$('#container').addClass('display-nav');
+})
 
 // The toggleNav function itself
 function toggleNavigation() {
