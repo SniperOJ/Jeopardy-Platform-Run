@@ -389,7 +389,7 @@ class User extends CI_Controller {
 		if ($this->is_logined()){
 			echo json_encode(array(
 				'status' => 1, 
-				'message' => '登录成功!',
+				'message' => '欢迎回来!',
 			));
 			return true;
 		}
@@ -482,32 +482,33 @@ class User extends CI_Controller {
 
 			echo json_encode(array(
 				'status' => 1, 
-				'message' => '登录成功!',
+				'message' => '登录成功!欢迎回来!',
 			));
 
 			/* set session */
-			$this->set_session_by_username($username);
+			$this->set_session_by_username($user_info['username']);
 		}
 	}
 
 	public function set_session_by_username($username)
 	{
 	    // get user_id
-	    $user_id = $this->get_user_id($username);
+	    $user_id = $this->user_model->get_user_id_by_username($username);
 	    // set session
 	    $this->set_session_by_user_id($user_id);
 	}
 
 	public function set_session_by_user_id($user_id)
 	{
+	    $user_info = $this->user_model->get_user_info($user_id);
 	    // set session
 	    $data = array(
 	        'user_id' => $user_id,
-	        'username' => $this->get_username($user_id),
-	        'email' => $this->get_email($user_id),
-	        'score' => $this->get_score($user_id),
-	        'college' => $this->get_college($user_id),
-	        'usertype' => $this->get_usertype($user_id),
+	        'username' => $user_info['username'],
+	        'email' => $user_info['email'],
+	        'score' => $user_info['score'],
+	        'college' => $user_info['college'],
+	        'usertype' => $user_info['usertype'],
 	        'session_alive_time' => (time() + $this->config->item('sess_expiration')),
 	    );
 	    $this->session->set_userdata($data);

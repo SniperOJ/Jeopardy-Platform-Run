@@ -9,16 +9,31 @@
 
         <link rel="stylesheet"  type="text/css" href="/assets/css/style.css">
         <link rel="stylesheet"  type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet"  type="text/css" href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css">
+        
+        <link rel="stylesheet"  type="text/css" href="/assets/css/pnotify.custom.min.css">
 
         <title>SniperOJ</title>
         
         <script type="text/javascript" src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+        <script type="text/javascript" src="/assets/js/pnotify.custom.min.js"></script>
+
         <script type="text/javascript" src="/assets/js/smart_login.js"></script>
         <script type="text/javascript" src="/assets/js/smart_register.js"></script>
         <script type="text/javascript" src="/assets/js/show_alert_dialog.js"></script>
         <script type="text/javascript" src="/assets/js/rewrite_submit.js"></script>
+
+        <audio id="message_sound">
+            <source src="/assets/sounds/message.wav" type="audio/wav">
+        </audio>
+
+        <audio id="error_sound">
+            <source src="/assets/sounds/error.mp3" type="audio/mp3">
+        </audio>
 
     </head>
     <body>
@@ -26,14 +41,14 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">SniperOJ</a>
+                    <a class="navbar-brand" href="">SniperOJ</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <nav class="main_nav"> 
                         <ul  class="nav navbar-nav navbar-right "> 
-                            <li><a class="cd-login" href="#0">登录</a></li> 
-                            <li><a class="cd-register" href="#0">注册</a></li> 
+                            <li><a class="cd-login" href="javascript: void(0)">登录</a></li> 
+                            <li><a class="cd-register" href="javascript: void(0)">注册</a></li> 
                         </ul> 
                     </nav> 
                 </div><!-- /.navbar-collapse -->
@@ -53,7 +68,7 @@
                             <input  name="username" class="full-width has-padding has-border" id="login-username" type="text" placeholder="输入用户名">
                         </p>
                         <p class="fieldset">
-                            <input name="password" class="full-width has-padding has-border" id="login-password" type="text"  placeholder="输入密码">
+                            <input name="password" class="full-width has-padding has-border" id="login-password" type="password"  placeholder="输入密码">
                         </p>
                         <p  style="width: 50%;float:left;">
                             <input name=captcha class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
@@ -72,7 +87,7 @@
                             <input name="username" class="full-width has-padding has-border" id="register-username" type="text" placeholder="输入用户名">
                         </p>
                         <p class="fieldset">
-                            <input name="password" class="full-width has-padding has-border" id="register-password" type="text"  placeholder="输入密码">
+                            <input name="password" class="full-width has-padding has-border" id="register-password" type="password"  placeholder="输入密码">
                         </p>
                         <p class="fieldset">
                             <input name="email" class="full-width has-padding has-border" id="register-email" type="email" placeholder="请输入邮箱">

@@ -127,7 +127,7 @@ $(document).ready(function() {
             return;
         }
         var username = this.value;
-        check_username_existed(username)
+        check_username_existed_register(username)
     });
 
     $("#register-password").blur(function(){
@@ -252,7 +252,7 @@ function check_captcha_register(captcha) {
     });
 }
 
-function check_username_existed(username) {
+function check_username_existed_register(username) {
     $.ajax({
         type: "POST",
         url: "/user/check_username_existed",

@@ -95,6 +95,8 @@ $(document).ready(function() {
             disable_button_login();
             return;
         }
+        var username = this.value;
+        check_username_existed_login(username);
     });
 
     $("#login-password").blur(function(){
@@ -181,6 +183,27 @@ function check_captcha_login(captcha) {
                 show_error($("#login-captcha"), "验证码错误!");
                 trun_red($("#login-captcha"))
                 disable_button_login();
+            }
+        }
+    });
+}
+
+function check_username_existed_login(username) {
+    $.ajax({
+        type: "POST",
+        url: "/user/check_username_existed",
+        dataType: "json",
+        data: {
+            "username":username
+        },
+        success: function(msg) {
+            if (msg.status == 1){
+                show_error($("#login-username"), "用户名不存在!");
+                trun_red($("#login-username"))
+                disable_button_login();
+            }else{
+                trun_green($("#login-username"))
+                release_button_login()
             }
         }
     });
