@@ -1,4 +1,4 @@
-CREATE DATABASE `beta` /*!40100 DEFAULT CHARACTER SET utf8 */
+CREATE DATABASE `SniperOJ` /*!40100 DEFAULT CHARACTER SET utf8 */
 
 /* Class */
 CREATE TABLE `users` (
@@ -63,18 +63,6 @@ CREATE TABLE `reset_password` (
   `verified` tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (`reset_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `reset_password` (
-  `reset_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `email` varchar(64) DEFAULT NULL,
-  `salt` varchar(16) DEFAULT NULL,
-  `reset_code` varchar(32) DEFAULT NULL,
-  `reset_code_alive_time` int DEFAULT 0,
-  `verified` tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (`reset_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 
 /* LOG */
 
