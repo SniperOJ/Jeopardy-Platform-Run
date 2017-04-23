@@ -53,6 +53,9 @@ transition-property: transform;
 -moz-transition-duration: 0.3s;
 transition-duration: 0.3s;
 }
+.cd-user-modal-container .cd-switcher{
+list-style-type: none;
+}
 .cd-user-modal-container .cd-switcher:after {
 content: "";
 display: table;
