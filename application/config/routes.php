@@ -51,8 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['user/register'] = 'user/register';
-$route['user/check_username_existed/(:any)'] = 'user/check_username_existed';
-$route['user/check_email_existed/(:any)'] = 'user/check_email_existed';
+$route['user/check_username_existed'] = 'user/check_username_existed';
+$route['user/check_email_existed'] = 'user/check_email_existed';
+$route['user/get_captcha'] = 'user/get_captcha';
+$route['user/check_captcha_current'] = 'user/check_captcha_current';
 $route['user/login'] = 'user/login';
 $route['user/active/(:any)'] = 'user/active';
 $route['user/verify/(:any)'] = 'user/verify_reset_code';

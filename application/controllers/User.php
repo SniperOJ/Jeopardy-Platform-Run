@@ -149,7 +149,7 @@ class User extends CI_Controller {
 		{
 			die(json_encode(array(
 				'status' => 0, 
-				'message' => '请提交邮箱!',
+				'message' => '请输入邮箱!',
 			)));
 		}
 		else
@@ -181,7 +181,7 @@ class User extends CI_Controller {
 		{
 			die(json_encode(array(
 				'status' => 0, 
-				'message' => '请提交用户名!',
+				'message' => '请输入用户名!',
 			)));
 		}
 		else
@@ -223,21 +223,13 @@ class User extends CI_Controller {
 		else
 		{
 			/* 获取 POST 数据 */
-			$captcha = $this->input->post('captcha');
+			$captcha = intval($this->input->post('captcha'));
 			$user_info = array(
 				'username' => $this->input->post('username'), 
 				'password' => $this->input->post('password'), 
 				'email' => $this->input->post('email'), 
 				'college' => $this->input->post('college'), 
 			);
-
-			/* 验证码 */
-			if($this->verify_captcha($captcha) == false){
-				die(json_encode(array(
-					'status' => 0, 
-					'message' => '验证码错误!',
-				)));
-			}
 
 			/* 用户名长度 */
 			if($this->check_username_length($user_info['username']) == false){
@@ -292,6 +284,14 @@ class User extends CI_Controller {
 				die(json_encode(array(
 					'status' => 0, 
 					'message' => '请检查您的邮箱格式是否合法!',
+				)));
+			}
+
+			/* 验证码 */
+			if($this->verify_captcha($captcha) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
 				)));
 			}
 
@@ -386,7 +386,7 @@ class User extends CI_Controller {
 
 	public function login()
 	{
-		if ($this->is_logined){
+		if ($this->is_logined()){
 			echo json_encode(array(
 				'status' => 1, 
 				'message' => '登录成功!',
@@ -410,19 +410,11 @@ class User extends CI_Controller {
 		else
 		{
 			/* 获取 POST 数据 */
-			$captcha = $this->input->post('captcha');
+			$captcha = intval($this->input->post('captcha'));
 			$user_info = array(
 				'username' => $this->input->post('username'), 
 				'password' => $this->input->post('password'), 
 			);
-
-			/* 验证码 */
-			if($this->verify_captcha($captcha) == false){
-				die(json_encode(array(
-					'status' => 0, 
-					'message' => '验证码错误!',
-				)));
-			}
 
 			/* 用户名长度 */
 			if($this->check_username_length($user_info['username']) == false){
@@ -453,6 +445,14 @@ class User extends CI_Controller {
 				die(json_encode(array(
 					'status' => 0, 
 					'message' => '请不要在密码中包含特殊字符!',
+				)));
+			}
+
+			/* 验证码 */
+			if($this->verify_captcha($captcha) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
 				)));
 			}
 
@@ -589,6 +589,47 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function check_captcha_current()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('captcha', 'Captcha', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			die(json_encode(array(
+				'status' => 0, 
+				'message' => '表单验证失败!',
+			)));
+		}else{
+			$captcha = intval($this->input->post('captcha'));
+
+
+			// First, delete old captchas
+			$expiration = time() - 7200; // Two hour limit
+			$this->db->where('captcha_time < ', $expiration)
+				->delete('captcha');
+			// Then see if a captcha exists:
+			$sql = 'SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?';
+			$binds = array($captcha, $this->input->ip_address(), $expiration);
+			$query = $this->db->query($sql, $binds);
+			$row = $query->row();
+			if ($row->count > 0)
+			{
+				echo json_encode(array(
+					'status' => 1, 
+					'message' => '验证码正确!',
+				));
+			}else{
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
+				)));
+			}
+		}
+	}
+
 	public function get_masked_email($email)
 	{
 		$mail_parts = explode("@", $email);
@@ -598,11 +639,6 @@ class User extends CI_Controller {
 		$replace = str_repeat("*", $hide);
 		return substr_replace ( $mail_parts[0] , $replace , $show, $hide ) . "@" . substr_replace($mail_parts[1], "**", 0, 2);
 	}
-
-
-
-
-
 
 	public function forget()
 	{
@@ -621,24 +657,24 @@ class User extends CI_Controller {
 		}else{
 
 			/* 获取 POST 数据 */
-			$captcha = $this->input->post('captcha');
+			$captcha = intval($this->input->post('captcha'));
 			$reset_data = array(
 				'email' => $this->input->post('email'),
 			);
-
-			/* 验证码 */
-			if($this->verify_captcha($captcha) == false){
-				die(json_encode(array(
-					'status' => 0, 
-					'message' => '验证码错误!',
-				)));
-			}
 
 			/* Email是否合法 */
 			if($this->check_email($reset_data['email']) == false){
 				die(json_encode(array(
 					'status' => 0, 
 					'message' => '请检查您的邮箱格式是否合法!',
+				)));
+			}
+
+			/* 验证码 */
+			if($this->verify_captcha($captcha) == false){
+				die(json_encode(array(
+					'status' => 0, 
+					'message' => '验证码错误!',
 				)));
 			}
 
@@ -777,10 +813,10 @@ class User extends CI_Controller {
 				)));
 			}
 
-			die(json_encode(array(
-				'status' => 0, 
+			echo json_encode(array(
+				'status' => 1, 
 				'message' => '重置密码成功!',
-			)));
+			));
 
 			// destory reset_code
 			$this->destory_reset_code($user_id);
@@ -808,5 +844,35 @@ class User extends CI_Controller {
 	public function destory_active_code($user_id)
 	{
 		$this->user_model->destory_active_code($user_id);
+	}
+
+	public function get_captcha()
+	{
+		$this->load->helper('captcha');
+		$this->load->helper("form");
+		$vals = array(
+		    'img_path'  => './assets/captcha/',
+		    'img_url'   => '/assets/captcha/',
+		    'font_path' => './assets/fonts/texb.ttf',
+		    'img_width' => 180,
+		    'img_height' => 50,
+		    'word_length' => 4,
+		    'font_size' => 24,
+		    'pool' => '0123456789',
+		);
+
+		$cap = create_captcha($vals);
+		$data = array(
+		    'captcha_time'  => $cap['time'], // why null
+		    'ip_address'    => $this->input->ip_address(),
+		    'word'      => $cap['word']
+		);
+		$query = $this->db->insert_string('captcha', $data);
+		$this->db->query($query);
+
+		echo json_encode(array(
+			'status' => 1, 
+			'message' => $cap['image'],
+		));
 	}
 }
