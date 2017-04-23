@@ -90,10 +90,7 @@
 
 
 
-
-
-
-		<div class="container">
+		<div class="challenges-container">
 			<h1>All challenges</h1>
 			<div class="grid">
 				<div class="grid-item">
@@ -109,10 +106,23 @@
 				</div>
 			</div>
 		</div>
-		
+
 
 	</div>
 </div>
 
 
 <script type="text/javascript" src="/assets/js/blocks.js"></script>
+
+
+<script type="text/javascript">
+	/* 动态加载所有题目 */
+</script>
+
+<script type="text/javascript">
+	/* 动态加载个人信息 */
+</script>
+
+<script type="text/javascript">
+	/* 动态加载排行榜 */
+</script>
