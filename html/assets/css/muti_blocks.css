@@ -1,0 +1,35 @@
+.container{
+	margin-left: 200px;
+}
+.grid {
+
+  position: relative;
+
+  /* fluffy */
+  margin: 0 auto;
+  width: 98%;
+  /* end fluffy */
+}
+
+.grid-item {
+  position: absolute;
+
+   /* fluffy */
+  opacity: 0;
+   box-shadow: 1px 1px #9E9E9E;
+   width: 180px;
+   height: 120px;
+   border-radius: 3px;
+   background-color: #536DFE;
+   /* end fluffy */
+
+}
+
+/* mq */
+
+@media (max-width: 600px) {
+  .grid-item {
+    width: 120px;
+    height: 80px;
+  }
+}
