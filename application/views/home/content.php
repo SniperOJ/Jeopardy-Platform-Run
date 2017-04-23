@@ -48,24 +48,24 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="#">2017-HIT-CTF</a>
+                            <a href="#">HIT-CTF-2017</a>
                         </li>
                         <li>
-                            <a href="#">2017-BCTF</a>
+                            <a href="#">BCTF-2017</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <div>
                         <span class="menu-icons  fa fa-briefcase"></span>
-                        <a href="#">Tutorial</a><span class="the-btn fa fa-plus"></span>
+                        <a href="#">tutorials</a><span class="the-btn fa fa-plus"></span>
                     </div>
                     <ul>
                         <li>
-                            <a href="#">Web</a>
+                            <a href="#">web</a>
                         </li>
                         <li>
-                            <a href="#">Misc</a>
+                            <a href="#">misc</a>
                         </li>
                     </ul>
                 </li>
@@ -85,7 +85,7 @@
         </div>
         <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
 
-        <div class="challenges-container">
+<!--         <div class="challenges-container">
             <h1>All challenges</h1>
             <div class="grid">
                 <div class="grid-item">
@@ -100,7 +100,7 @@
                     
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
     </div>
@@ -116,6 +116,7 @@
 <script type="text/javascript">
     /* 动态加载个人信息 */
 </script>
+
 
 <script type="text/javascript">
     /* 动态加载排行榜 */
