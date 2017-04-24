@@ -142,7 +142,23 @@ class User_model extends CI_Model {
 	{
 		return $this->db->set('active_code', '')->where('user_id', $user_id)->update('users');
 	}
-
+	
+	public function get_user_submit_accept_times($userID){
+	    $query = $this->db->select(array('submitID'))
+	    ->order_by('submit_time','desc')
+	    ->where(array('userID' => $userID, 'is_current' => '1'))
+	    ->get('submit_log');
+	    $result = $query->num_rows();
+	    return $result;
+	}
+	public function get_user_submit_times($userID){
+	    $query = $this->db->select(array('submitID'))
+	    ->order_by('submit_time','desc')
+	    ->where(array('userID' => $userID))
+	    ->get('submit_log');
+	    $result = $query->num_rows();
+	    return $result;
+	}
 
 	public function get_all_scores()
 	{
