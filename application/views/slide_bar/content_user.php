@@ -1,3 +1,79 @@
+<style type=text/css>
+.challenge-item{
+  margin:10px;
+  padding: 5px;
+  background-color: #00006600;
+  position: relative;
+  width: 256px;
+  height: 160px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.5),0px -5px 20px rgba(0,0,0,0.1) inset;
+}
+.challenge-item-web{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #0080FF;
+  opacity:0.65;
+} 
+.challenge-item-pwn{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #FF2D2D;
+  opacity:0.65;
+}
+.challenge-item-misc{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #FFD306;
+  opacity:0.65;
+}
+.challenge-item-crypto{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #C07AB8;
+  opacity:0.65;
+}
+.challenge-item-stego{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #79FF79;
+  opacity:0.65;
+}
+.challenge-item-forensics{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #B15BFF;
+  opacity:0.65;
+}
+.challenge-item-other{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #F75000;
+  opacity:0.65;
+}
+.challenge-item-solved{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #EEEEEE;
+  opacity:0.1;
+  color: #000;
+}
+.challenge:hover{
+  transition: all 0.5s ease;
+  opacity:1;
+}
+</style>  
+
 
 <script type="text/javascript" src="/assets/js/polling.js"></script>
 
@@ -127,7 +203,7 @@
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
                       html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
-                      html += '<p style="text-align:center; font-size:18px;">'
+                      html += '<p style="text-align:center;">'
                       html += challenges[i].name + '<br>';
                       html += '分数 : ' + challenges[i].score + '<br>';
                       html += '点击量 : ' + challenges[i].visit_times + '<br>';
@@ -171,8 +247,9 @@
 
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
-                        html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
-                        html += '<p style="text-align:center; font-size:18px;">'
+                        var color_class = get_challenge_item_class(challenges[i].type);
+                        html += '<div class="grid-item challenge-item '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        html += '<p style="text-align:center;">'
                         html += challenges[i].name + '<br>';
                         html += '分数 : ' + challenges[i].score + '<br>';
                         html += '点击量 : ' + challenges[i].visit_times + '<br>';
@@ -186,6 +263,10 @@
                 }
             }
         });
+    }
+
+    function get_challenge_item_class(type) {
+      return 'challenge-item-' + type;
     }
 
     function flush_data() {
@@ -574,10 +655,12 @@
                         if (startswith(type, "submit")){
                             var challenge_id = e.target.children[0].children[0].value
                             var flag = e.target.children[1].children[0].value
-                            submit_flag(challenge_id, flag)
-                            return;
+                            if(flag.length > 0){
+                              submit_flag(challenge_id, flag)
+                            }else{
+                              show_pnotify("Failed!", '请输入flag!', "error")
+                            }
                         }
-
                       });
                     });
                 }
@@ -587,8 +670,6 @@
 
 
     function submit_flag(challenge_id, flag) {
-        console.log(challenge_id);
-        console.log(flag);
         var url = '/challenge/submit';
         $.ajax({
             type: "POST",
