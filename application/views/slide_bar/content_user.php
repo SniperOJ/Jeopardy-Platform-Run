@@ -500,9 +500,6 @@
     });
 
 
-
-
-
     function show_challenge(challenge_id) {
         var url = "challenge/get_challenge_info/" + challenge_id;
         $.ajax({
@@ -592,8 +589,14 @@
             success: function(msg) {
                 if(msg.status == 1){
                     show_pnotify("Success!", msg.message, "success")
+                    // hide modal
+                    $('.cd-submit-modal').removeClass('is-visible');
+                    // add submit time
+                    // add solved time
                 }else{
                     show_pnotify("Failed!", msg.message, "error")
+
+                    // add submit time
                 }
             }
         });
@@ -628,6 +631,5 @@
         html += '</div>';
         return html;
     }
-// form_modal.addClass('is-visible'); 
 </script>
 

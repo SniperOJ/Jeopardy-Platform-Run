@@ -2,6 +2,8 @@
 $(function() {
 	$('.toggle-nav').click(function() {
 		toggleNavigation();
+
+
 	});
 });
 
@@ -18,6 +20,8 @@ function toggleNavigation() {
 	} else {
 		// Open Nav
 		$('#container').addClass('display-nav');
+		// set convas width
+		$('#canvas').css('width', '80%');
 	}
 }
 

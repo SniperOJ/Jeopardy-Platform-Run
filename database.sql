@@ -102,4 +102,4 @@ CREATE TABLE `click_log` (
 alter table `challenges` add `author_id` int NOT NULL DEFAULT 1;
 alter table `challenges` modify `author_id` int NOT NULL DEFAULT 1;
 
-alter table `challenges` modify `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'other',
+alter table `challenges` modify `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'other';
