@@ -2,21 +2,6 @@
         <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
 
         <div class="content-container">
-            <!-- 这里最终用 js 填充 -->
-<!--             <h1>All challenges</h1>
-            <div class="grid">
-                <div class="grid-item">
-                    Black1
-                </div>
-                <div class="grid-item">
-                    Black1
-                    
-                </div>
-                <div class="grid-item">
-                    Black1
-                    
-                </div>
-            </div> -->
         </div>
 
 
@@ -24,20 +9,6 @@
 </div>
 
 <script type="text/javascript" src="/assets/js/sliding.js"></script>
-<script type="text/javascript" src="/assets/js/blocks.js"></script>
-
-<script type="text/javascript">
-    /* 动态加载所有题目 */
-</script>
-
-<script type="text/javascript">
-    /* 动态加载个人信息 */
-</script>
-
-
-<script type="text/javascript">
-    /* 动态加载排行榜 */
-</script>
 
 <link rel="stylesheet"  type="text/css" href="/assets/css/style.css">
 <script type="text/javascript" src="/assets/js/smart_login.js"></script>
