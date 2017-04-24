@@ -786,7 +786,7 @@
 
 <script type="text/javascript">
   $('.hide-rank-container').on('click', function(){
-    $(".rank-tbody").toggle(1000);
+    $(".rank-container").toggle(1000);
   });
 
   $(document).ready(function(){
