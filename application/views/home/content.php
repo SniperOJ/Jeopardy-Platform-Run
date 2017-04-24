@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="/assets/css/optiscroll.css">
-
 <style type="text/css">
 	.content-container{
 		text-align: center;
@@ -7,7 +5,8 @@
 		font-size: 32px;
 	}
 </style>
-<div class="content-container optiscroll">
+
+<div id="main-scrollbar" class="content-container" data-scrollbar>
 	<h1 class="cover-heading">Capture The Flag</h1>
 	<p class="lead">
 		SniperOJ is an open source and free CTF online judge system<br>
@@ -21,14 +20,3 @@
 		<h3><a target="_blank" href="https://github.com/WangYihang/SniperOJ">Fork/Star This Repositories On Github</a></h3>
 	</p>
 </div>
-
- <script type="text/javascript" src="/assets/js/jquery.optiscroll.min.js"></script>
-<script type="text/javascript">
-// init  optiscroll
-// plain JS version
-var element = document.querySelector('#scroll')
-var myOptiscrollInstance = new Optiscroll(element);
-
-// jQuery plugin
-$('#scroll').optiscroll()
-</script>
