@@ -784,9 +784,9 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>排名</th>
-      <th>用户名</th>
-      <th>分数</th>
+      <th style="font-size: 22px;">排名</th>
+      <th style="font-size: 22px;">用户名</th>
+      <th style="font-size: 22px;">分数</th>
     </tr>
   </thead>
   <tbody class="rank-tbody">
