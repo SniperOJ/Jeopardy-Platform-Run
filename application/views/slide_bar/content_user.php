@@ -837,7 +837,9 @@
                   return (b.score - a.score);
                 }
               });
-              for (var i = 0; i < rank_data.length - 1; i++) {
+
+              var max = (rank_data.length > 20) ? 20:rank_data.length;
+              for (var i = 0; i < max; i++) {
                 var user_data = rank_data[i]
                 var html = ''
                 html +=  '<tr>';
