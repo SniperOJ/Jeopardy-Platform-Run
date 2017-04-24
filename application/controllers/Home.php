@@ -77,6 +77,6 @@ class Home extends CI_Controller {
 
 	public function is_admin()
 	{
-	    return ($this->session->usertype === 0);
+	    return (intval($this->session->usertype) === 1);
 	}
 }

@@ -1,6 +1,6 @@
-<h2 id="title"><i class="fa fa-sitemap"></i>SniperOJ</h2>
+<h2 id="title"><i class="fa fa-sitemap"></i>Admin</h2>
 <ul id="toggle" class="slide-bar-left">
-
+    
     <li>
         <div class="active border">
             <span class="menu-icons fa fa-home"></span>   <a href="#">我的主页</a>
