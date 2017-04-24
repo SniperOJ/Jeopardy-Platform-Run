@@ -770,14 +770,14 @@
 <div class="rank-container">
 
 <table class="table table-hover">
-  <caption>悬停表格布局</caption>
-<!--   <thead>
+  <caption>排行榜</caption>
+  <thead>
     <tr>
       <th>排名</th>
       <th>用户名</th>
       <th>分数</th>
     </tr>
-  </thead> -->
+  </thead>
   <tbody class="rank-tbody">
 
   </tbody>
@@ -801,18 +801,9 @@
             if(msg.status == 1){
               var rank_data = msg.message;
               for (var i = 0; i < rank_data.length - 1; i++) {
-                // <tr>
-                //   <td>Sachin</td>
-                //   <td>Mumbai</td>
-                //   <td>400003</td>
-                // </tr>
-                // html += '学校 : '+user_data.college;
-                // html += '提交次数 : '+user_data.submit_times;
-                // html += '通过次数 : '+user_data.accept_times;
-                // html += '通过率 : '+user_data.pass_rate;
                 var user_data = rank_data[i]
                 var html = ''
-                html +=  '<tr class="hint--left" aria-label="' + '学校 : ' + user_data.college + '<br>通过率 : ' + user_data.pass_rate + '">';
+                html +=  '<tr class="hint--left" aria-label="' + '学校 : ' + user_data.college + '  通过率 : ' + user_data.pass_rate + '">';
                 html += '<td>' + (i + 1) + '</td>';
                 html += '<td>' + user_data.username + '</td>';
                 html += '<td>' + user_data.score + ' ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '</td>';
