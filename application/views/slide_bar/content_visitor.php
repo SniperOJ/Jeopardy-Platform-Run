@@ -39,5 +39,4 @@
 </ul>
 </div>
 
-</div>
 <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>

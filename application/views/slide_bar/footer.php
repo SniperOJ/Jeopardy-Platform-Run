@@ -1,6 +1,6 @@
 
 
-    </div>
+    <!-- </div> -->
 </div>
 
 <script type="text/javascript" src="/assets/js/sliding.js"></script>
