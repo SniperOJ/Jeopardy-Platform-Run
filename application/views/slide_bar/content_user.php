@@ -189,14 +189,21 @@
             },
             success: function(msg) {
                 if(msg.status == 1){
+                  console.log(msg);
+
                     // load to view
                     var html = '';
                     html += '<h1>'+type+'</h1>';
                     html += '<div class="grid">';
-
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
-                      html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                      if(challenges[i].is_solved == false){
+
+                        html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                      }else{
+                        html += '<div class="grid-item challenge-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        
+                      }
                       html += '<p style="text-align:center;">'
                       html += challenges[i].name + '<br>';
                       html += '分数 : ' + challenges[i].score + '<br>';
@@ -241,7 +248,13 @@
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
                         var color_class = get_challenge_item_class(challenges[i].type);
-                        html += '<div class="grid-item challenge-item '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        if(challenges[i].is_solved == false){
+
+                          html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        }else{
+                          html += '<div class="grid-item challenge-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                          
+                        }
                         html += '<p style="text-align:center;">'
                         html += challenges[i].name + '<br>';
                         html += '分数 : ' + challenges[i].score + '<br>';
