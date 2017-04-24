@@ -761,10 +761,6 @@
     padding-left: 16px;
     height: 100%;
   }
-
-  .rank-container:hover{
-  width: 360px;
-  }
 </style>
 
 
@@ -781,8 +777,7 @@
     z-index: 999;
 }  
 </style>
-<i class="hide-rank-container menu-icons glyphicon glyphicon-stats"></i>
-
+<i class="hide-rank-container menu-icons glyphicon glyphicon-eye-open"></i>
 
 <div class="rank-container">
 <h1>排行榜</h1>
@@ -801,8 +796,19 @@
 </div>
 
 <script type="text/javascript">
+  var is_open = true;
   $('.hide-rank-container').on('click', function(){
     $(".rank-container").toggle(1000);
+    if (is_open){
+      $(this).removeClass('glyphicon-eye-open');
+      $(this).addClass('glyphicon-eye-close');
+      is_open = false;
+    }else{
+      $(this).removeClass('glyphicon-eye-close');
+      $(this).addClass('glyphicon-eye-open');
+      is_open = true;
+    }
+
   });
 
   $(document).ready(function(){
