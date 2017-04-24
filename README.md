@@ -1,4 +1,6 @@
-#SniperOJ 
+SniperOJ  
+---
+
 > 一个开源的 CTF 训练平台
 
 TODO :
