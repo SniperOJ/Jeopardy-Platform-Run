@@ -17,6 +17,8 @@ function toggleNavigation() {
 	if ($('#container').hasClass('display-nav')) {
 		// Close Nav
 		$('#container').removeClass('display-nav');
+		// set convas width
+		$('#canvas').css('width', '100%');
 	} else {
 		// Open Nav
 		$('#container').addClass('display-nav');
