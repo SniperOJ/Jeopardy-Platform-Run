@@ -770,12 +770,11 @@
 <div class="rank-container">
 
 <table class="table table-hover">
-  <caption>排行榜</caption>
   <thead>
     <tr>
       <th>排名</th>
-      <th>用户名</th>
-      <th>分数</th>
+<!--       <th>用户名</th>
+      <th>分数</th> -->
     </tr>
   </thead>
   <tbody class="rank-tbody">
