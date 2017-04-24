@@ -71,6 +71,7 @@ $route['user/active/(:any)'] = 'user/active';
 $route['user/verify/(:any)'] = 'user/verify_reset_code';
 $route['user/forget'] = 'user/forget';
 $route['user/reset'] = 'user/reset';
+$route['user/score'] = 'user/score';
 $route['user/logout'] = 'user/logout';
 $route['user/(:any)'] = 'user/profile';
 $route['user'] = 'user/profile';

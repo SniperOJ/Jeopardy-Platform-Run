@@ -747,3 +747,23 @@
 
 <div class="content-container">
 </div>
+
+
+<style type="text/css">
+  .awdsda{
+    background-color: #FEDCBA;
+    bottom: 1px;
+    right: 0px;             /*举例右边3像素*/
+    position:fixed;    
+    padding-bottom: 3px;
+    width: 200px;    
+    height: 100%;
+  }
+</style>
+<div class="rank">
+
+</div>
+
+<script type="text/javascript">
+  // 加载排行榜
+</script>

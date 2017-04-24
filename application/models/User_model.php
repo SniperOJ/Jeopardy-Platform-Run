@@ -142,4 +142,24 @@ class User_model extends CI_Model {
 	{
 		return $this->db->set('active_code', '')->where('user_id', $user_id)->update('users');
 	}
+
+
+	public function get_all_scores()
+	{
+		$query = $this->db->select(array('user_id', 'username','college','score',))
+		        ->where('score >', 0)
+		        ->order_by('score','desc')
+		        ->get('users');
+		$result = $query->result_array();
+		for ($i=0; $i < count($result); $i++) {
+		    $user_id = $result[$i]['user_id'];
+		    $submit_times = $this->get_user_submit_times($user_id);
+		    $accept_times = $this->get_user_submit_accept_times($user_id);
+		    $pass_rate = sprintf("%.1f", $accept_times * 100.0 / $submit_times);
+		    $result[$i]['submit_times'] = $submit_times;
+		    $result[$i]['accept_times'] = $accept_times;
+		    $result[$i]['pass_rate'] = $pass_rate;
+		}
+		return $result;
+	}
 }

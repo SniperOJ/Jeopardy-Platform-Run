@@ -875,4 +875,20 @@ class User extends CI_Controller {
     {
         return ($this->session->usertype === 0);
     }
+
+
+
+    public function score()
+    {
+        if($this->is_logined()){
+            $score_data = $this->user_model->get_all_scores();
+            echo json_encode(array(
+                'status' => 1,
+                'message' => $score_data,
+            ));
+        }else{
+            $this->session->sess_destroy();
+            redirect("/");
+        }
+    }
 }
