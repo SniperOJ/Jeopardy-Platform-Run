@@ -100,13 +100,24 @@ CREATE TABLE `click_log` (
 
 
 alter table `challenges` add `author_id` int NOT NULL DEFAULT 1;
-alter table `challenges` modify `author_id` int NOT NULL DEFAULT 1;
 
 alter table `challenges` modify `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'other';
 
-
-alter table `users` add `actived` tinyint NOT NULL DEFAULT 0;
 alter table `users` add `actived` tinyint NOT NULL DEFAULT 0;
 
 alter table `users` add `active_code` varchar(32) DEFAULT NULL;
 alter table `users` add `active_code_alive_time` varchar(32) DEFAULT NULL;
+
+alter table `users` change column `userID` `user_id` int NOT NULL AUTO_INCREMENT;
+
+alter table `challenges` change column `challengeID` `challenge_id` int NOT NULL AUTO_INCREMENT;
+
+alter table `users` drop column `token`;
+alter table `users` drop column `token_alive_time`;
+alter table `users` drop column `verified`;
+update `users` set actived = 1;
+
+alter table `submit_log` change column `challengeID` `challenge_id` int NOT NULL;
+alter table `submit_log` change column `userID` `user_id` int NOT NULL;
+alter table `submit_log` change column `submitID` `submit_id` int NOT NULL AUTO_INCREMENT;
+
