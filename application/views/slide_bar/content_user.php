@@ -760,6 +760,8 @@
     width: 360px;
     padding-left: 16px;
     height: 100%;
+    text-align: center;
+    padding-top:10px;
   }
 </style>
 
