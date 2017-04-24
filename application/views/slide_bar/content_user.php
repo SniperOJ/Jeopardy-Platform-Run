@@ -197,11 +197,12 @@
                     html += '<div class="grid">';
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
+                      var color_class = get_challenge_item_class(challenges[i].type);
                       if(challenges[i].is_solved == false){
 
-                        html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        html += '<div class="challenge-item grid-item '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                       }else{
-                        html += '<div class="grid-item challenge-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        html += '<div class="challenge-item grid-item challenge-item-solved '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                         
                       }
                       html += '<p style="text-align:center;">'
@@ -250,9 +251,9 @@
                         var color_class = get_challenge_item_class(challenges[i].type);
                         if(challenges[i].is_solved == false){
 
-                          html += '<div class="challenge-item grid-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                          html += '<div class="challenge-item grid-item '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                         }else{
-                          html += '<div class="challenge-item grid-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                          html += '<div class="challenge-item grid-item challenge-item-solved '+color_class+'" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                           
                         }
                         html += '<p style="text-align:center;">'
