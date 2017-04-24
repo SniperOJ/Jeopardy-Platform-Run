@@ -69,7 +69,7 @@ function show_process()
                 }
                 // play sound only once
                 if (sound_flag){
-                    $('#chatAudio')[0].play()
+                    $('#message')[0].play()
                 }
             }
         });
