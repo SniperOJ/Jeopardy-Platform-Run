@@ -2,8 +2,6 @@
 $(function() {
 	$('.toggle-nav').click(function() {
 		toggleNavigation();
-
-
 	});
 });
 

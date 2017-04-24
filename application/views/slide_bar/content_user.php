@@ -1,13 +1,13 @@
 <h2 id="title"><i class="fa fa-sitemap"></i>SniperOJ</h2>
 <ul id="toggle" class="slide-bar-left">
 
-    <li>
+    <li class="cd-mine">
         <div class="active border">
             <span class="menu-icons fa fa-home"></span>   <a href="#">我的主页</a>
         </div>
     </li>
 
-    <li>
+    <li class="cd-challenges">
         <div>
             <span class="menu-icons  fa fa-user"></span>   <a href="#">题目</a>
             <span class="the-btn fa fa-plus"></span>
@@ -81,6 +81,14 @@
 
 
 <script type="text/javascript">
+
+// open challenges default
+ $(document).ready(function(){
+  $(".cd-challenges").children()[0].click();
+  var a = $(".cd-challenges").children()[1];
+  $($(a).find('li')[0]).children()[0].click()
+ });
+
 
     function get_challenges_simple(type) {
         //clear data
