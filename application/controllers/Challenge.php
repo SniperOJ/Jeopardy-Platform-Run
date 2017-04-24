@@ -37,7 +37,7 @@ class Challenge extends CI_Controller {
 
     public function get_all_challenges()
     {
-        if($this->is_logined()){
+        if($this->is_logined() == false){
             die(json_encode(array(
                 'status' => 0, 
                 'message' => '请登录后再试!',
@@ -80,7 +80,14 @@ class Challenge extends CI_Controller {
                     'status' => 1, 
                     'message' => $challenge_info,
             ));
+            // update visit times
+            $this->update_visit_times($challenge_id);
         }
+    }
+
+    public function update_visit_times($challenge_id)
+    {
+        $this->challenge_model->update_visit_times($challenge_id);
     }
 
     public function get_type_challenges()
@@ -129,8 +136,11 @@ class Challenge extends CI_Controller {
             case 'misc':
             case 'stego':
             case 'crypto':
-            case 'f':
+            case 'forensics':
                 $current_type = $type;
+                break;
+            case 'all':
+                $current_type = '*';
                 break;
             default:
                 $current_type = 'other';

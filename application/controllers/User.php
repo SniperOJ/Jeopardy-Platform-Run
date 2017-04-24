@@ -867,9 +867,11 @@ class User extends CI_Controller {
     public function logout()
     {
         $this->session->sess_destroy();
-        echo json_encode(array(
-            'status' => 1, 
-            'message' => '退出成功!',
-        ));
+        redirect("/");
+    }
+
+    public function is_admin()
+    {
+        return ($this->session->usertype === 0);
     }
 }

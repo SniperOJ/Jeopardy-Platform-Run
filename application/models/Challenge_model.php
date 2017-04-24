@@ -61,6 +61,19 @@ class Challenge_model extends CI_Model {
     public function get_all_challenges($user_id)
     {
         $query = $this->db
+            ->select(array(
+                'challenge_id',
+                'name',
+                'description',
+                'score',
+                'type',
+                'online_time',
+                'visit_times',
+                'fixing',
+                'resource',
+                'document',
+                'author_id',
+            ))
             ->where(array("fixing" => "0"))
             ->get("challenges");
         $challenges = $query->result_array();
@@ -113,6 +126,19 @@ class Challenge_model extends CI_Model {
     public function get_type_challenges($user_id, $type)
     {
         $query = $this->db
+            ->select(array(
+                'challenge_id',
+                'name',
+                'description',
+                'score',
+                'type',
+                'online_time',
+                'visit_times',
+                'fixing',
+                'resource',
+                'document',
+                'author_id',
+            ))
             ->where(array(
                 "fixing" => "0",
                 "type" => $type,
@@ -126,6 +152,20 @@ class Challenge_model extends CI_Model {
             $challenges[$i]['author_name'] = $this->user_model->get_username_by_user_id($challenges[$i]['author_id']);
         }
         return $challenges;
+    }
+
+    public function get_visit_times($challenge_id)
+    {
+        $query = $this->db->get_where('challenges', array('challenge_id' => $challenge_id));
+        $result = $query->row_array();
+        return $result['visit_times'];
+    }
+
+    public function set_visit_times($challenge_id, $visit_times)
+    {
+        $this->db->set(array('visit_times' => $visit_times));
+        $this->db->where('challenge_id', $challenge_id);
+        $this->db->update('challenges');
     }
 
     /* 更新点击量 */

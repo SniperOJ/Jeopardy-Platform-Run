@@ -1,0 +1,633 @@
+<h2 id="title"><i class="fa fa-sitemap"></i>SniperOJ</h2>
+<ul id="toggle" class="slide-bar-left">
+
+    <li>
+        <div class="active border">
+            <span class="menu-icons fa fa-home"></span>   <a href="#">我的主页</a>
+        </div>
+    </li>
+
+    <li>
+        <div>
+            <span class="menu-icons  fa fa-user"></span>   <a href="#">题目</a>
+            <span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="javascript:get_all_challenges();">all</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('web');">web</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('misc');">misc</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('pwn');">pwn</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('stego');">stego</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('crypto');">crypto</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('forensics');">forensics</a>
+            </li>
+            <li>
+                <a href="javascript:get_challenges_simple('other');">other</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="cd-write-up">
+        <div>
+            <span class="menu-icons  fa fa-briefcase"></span>
+            <a href="#">write-up</a><span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">HIT-CTF-2017</a>
+            </li>
+            <li>
+                <a href="#">BCTF-2017</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="cd-tutorials">
+        <div>
+            <span class="menu-icons  fa fa-briefcase"></span>
+            <a href="#">tutorials</a><span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">web</a>
+            </li>
+            <li>
+                <a href="#">misc</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="cd-logout">
+        <div>
+            <span class="menu-icons  fa fa-envelope"></span>
+            <a href="/user/logout">退出</a>
+        </div>
+    </li>
+</ul>
+
+
+
+<script type="text/javascript">
+
+    function get_challenges_simple(type) {
+        //clear data
+        var chellenge_container = $(".content-container");
+        chellenge_container.html('');
+
+        var url = "challenge/get_type_challenges/" + type;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            beforeSend:function(){
+                // disable button
+                disable_button_login()
+                // display = none , alert dialog
+                $('.cd-user-modal').removeClass('is-visible');
+                NProgress.start();
+            },
+            complete:function(){
+                NProgress.done();
+            },
+            success: function(msg) {
+                if(msg.status == 1){
+                    // load to view
+                    var html = '';
+                    html += '<h1>'+type+'</h1>';
+                    html += '<div class="grid">';
+
+                    var challenges = msg.message;
+                    for (var i = challenges.length - 1; i >= 0; i--) {
+                        html += '<div class="grid-item">';
+                        html += '<p style="text-align:center; font-size:22px;">'
+                        html += challenges[i].name;
+                        html += '</p>'
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                    chellenge_container.html(html);
+                    flush_data()
+                }
+            }
+        });
+    }
+
+    function get_all_challenges() {
+        var chellenge_container = $(".content-container");
+        // clear data
+        chellenge_container.html('');
+
+        var url = "challenge/get_all_challenges";
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            beforeSend:function(){
+                // disable button
+                disable_button_login()
+                // display = none , alert dialog
+                $('.cd-user-modal').removeClass('is-visible');
+                NProgress.start();
+            },
+            complete:function(){
+                NProgress.done();
+            },
+            success: function(msg) {
+                if(msg.status == 1){
+                    var html = '';
+                    html += '<h1>All</h1>';
+                    html += '<div class="grid">';
+
+                    var challenges = msg.message;
+                    for (var i = challenges.length - 1; i >= 0; i--) {
+                        html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                        html += '<p style="text-align:center; font-size:22px;">'
+                        html += '名称 : ' + challenges[i].name + '<br>';
+                        html += '分数 : ' + challenges[i].score + '<br>';
+                        html += '点击量 : ' + challenges[i].visit_times + '<br>';
+                        html += '战况 : ' + challenges[i].solved_times + '/' + challenges[i].submit_times;
+                        html += '</p>'
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                    chellenge_container.html(html);
+                    flush_data()
+                }
+            }
+        });
+    }
+
+    function flush_data() {
+            function animate(item, x, y, index) {
+            dynamics.animate(item, {
+            translateX: x,
+            translateY: y,
+            opacity: 1
+            }, {
+            type: dynamics.spring,
+            duration: 800,
+            frequency: 120,
+            delay: 100 + index * 30
+            });
+            }
+            minigrid('.grid', '.grid-item', 6, animate);
+            window.addEventListener('resize', function(){
+            minigrid('.grid', '.grid-item', 6, animate);
+            });
+    }
+
+
+
+
+</script>
+
+
+<style type="text/css">
+    .cd-submit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(52, 54, 66, 0.9);
+    z-index: 3;
+    overflow-y: auto;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s 0, visibility 0 0.3s;
+    -moz-transition: opacity 0.3s 0, visibility 0 0.3s;
+    transition: opacity 0.3s 0, visibility 0 0.3s;
+    }
+    .cd-submit-modal.is-visible {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s 0, visibility 0 0;
+    -moz-transition: opacity 0.3s 0, visibility 0 0;
+    transition: opacity 0.3s 0, visibility 0 0;
+    }
+    .cd-submit-modal.is-visible .cd-submit-modal-container {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    }
+
+    .cd-submit-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    background: #FFF;
+    margin: 3em auto 4em;
+    cursor: auto;
+    border-radius: 0.25em;
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -o-transform: translateY(-30px);
+    transform: translateY(-30px);
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    }
+    .cd-submit-modal-container .cd-switcher{
+    list-style-type: none;
+    }
+    .cd-submit-modal-container .cd-switcher:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    .cd-submit-modal-container .cd-switcher li {
+    width: 50%;
+    float: left;
+    text-align: center;
+    }
+    .cd-submit-modal-container .cd-switcher li:first-child a {
+    border-radius: .25em 0 0 0;
+    }
+    .cd-submit-modal-container .cd-switcher li:last-child a {
+    border-radius: 0 .25em 0 0;
+    }
+    .cd-submit-modal-container .cd-switcher a {
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #d2d8d8;
+    color: #809191;
+    }
+    .cd-submit-modal-container .cd-switcher a.selected {
+    background: #FFF;
+    color: #505260;
+    }
+
+    #cd-submit,  {
+    display: none;
+    }
+
+    #cd-submit.is-selected, .is-selected{
+    display: block;
+    }
+
+    .cd-submit-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(52, 54, 66, 0.9);
+      z-index: 3;
+      overflow-y: auto;
+      cursor: pointer;
+      visibility: hidden;
+      opacity: 0; 
+      -webkit-transition: opacity 0.3s 0, visibility 0 0.3s;
+      -moz-transition: opacity 0.3s 0, visibility 0 0.3s;
+      transition: opacity 0.3s 0, visibility 0 0.3s;
+    }
+    .cd-submit-modal.is-visible {
+      visibility: visible;
+      opacity: 1;
+      -webkit-transition: opacity 0.3s 0, visibility 0 0;
+      -moz-transition: opacity 0.3s 0, visibility 0 0;
+      transition: opacity 0.3s 0, visibility 0 0;
+    }
+    .cd-submit-modal.is-visible .cd-submit-modal-container {
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    .cd-submit-modal-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      background: #FFF;
+      margin: 3em auto 4em;
+      cursor: auto;
+      border-radius: 0.25em;
+      -webkit-transform: translateY(-30px);
+      -moz-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+      -o-transform: translateY(-30px);
+      transform: translateY(-30px);
+      -webkit-transition-property: -webkit-transform;
+      -moz-transition-property: -moz-transform;
+      transition-property: transform;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+    }
+
+    .cd-form {
+      padding: 1.4em;
+    }
+    .cd-form .fieldset {
+      position: relative;
+      margin: 1.4em 0;
+    }
+    .cd-form .fieldset:first-child {
+      margin-top: 0;
+    }
+    .cd-form .fieldset:last-child {
+      margin-bottom: 0;
+    }
+    .cd-form label {
+      font-size: 16px;
+      font-size: 0.875rem;
+    }
+    .cd-form label.image-replace {
+      /* replace text with an icon */
+      display: inline-block;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      bottom: auto;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      height: 20px;
+      width: 20px;
+      overflow: hidden;
+      text-indent: 100%;
+      white-space: nowrap;
+      color: transparent;
+      text-shadow: none;
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+    }
+    .cd-form label.cd-username {
+      background-image: url("../img/cd-icon-username.svg");
+    }
+    .cd-form label.cd-email {
+      background-image: url("../img/cd-icon-email.svg");
+    }
+    .cd-form label.cd-password {
+      background-image: url("../img/cd-icon-password.svg");
+    }
+    .cd-form input {
+      margin: 0;
+      padding: 0;
+      border-radius: 0.25em;
+    }
+    .cd-form input.full-width {
+      width: 80%;
+    }
+    .cd-form input.full-width2 {
+      width: 94%;
+    }
+    .cd-form input.has-padding {
+      padding: 12px 20px 12px 50px;
+    }
+    .cd-form input.has-border {
+      border: 1px solid #d2d8d8;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+    }
+    .cd-form input.has-border:focus {
+      border-color: #343642;
+      box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+      outline: none;
+    }
+    .cd-form input.has-error {
+      border: 1px solid #d76666;
+    }
+    .cd-form input[type=password] {
+      /* space left for the HIDE button */
+      padding-right: 65px;
+    }
+    .cd-form input[type=submit] {
+      padding: 16px 0;
+      cursor: pointer;
+      background: #2f889a;
+      color: #FFF;
+      font-weight: bold;
+      border: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+    }
+    .no-touch .cd-form input[type=submit]:hover, .no-touch .cd-form input[type=submit]:focus {
+      background: #3599ae;
+      outline: none;
+    }
+
+
+    @media only screen and (min-width: 600px) {
+      .cd-form {
+        padding: 2em;
+      }
+      .cd-form .fieldset {
+        margin: 2em 0;
+      }
+      .cd-form .fieldset:first-child {
+        margin-top: 0;
+      }
+      .cd-form .fieldset:last-child {
+        margin-bottom: 0;
+      }
+      .cd-form input.has-padding {
+        padding: 16px 20px 16px 50px;
+      }
+      .cd-form input[type=submit] {
+        padding: 16px 0;
+      }
+    }
+
+    .cd-close-form {
+      /* form X button on top right */
+      display: block;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 0;
+      top: -40px;
+      background: url("../img/cd-icon-close.svg") no-repeat center center;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    @media only screen and (min-width: 1170px) {
+      .cd-close-form {
+        display: none;
+      }
+    }
+
+    #cd-submit{
+      display: none;
+    }
+
+    #cd-submit.is-selected{
+      display: block;
+    }
+</style>
+
+
+<script type="text/javascript">
+    $(".challenge-item").on('click', function() {
+        console.log("正在绑定...")
+        // 获取该题目的数据
+        var challenge_id = $(this).id;
+        console.log(challenge_id);
+        
+    });
+
+
+
+
+
+    function show_challenge(challenge_id) {
+        var url = "challenge/get_challenge_info/" + challenge_id;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            beforeSend:function(){
+                disable_button_login()
+                $('.cd-user-modal').removeClass('is-visible');
+                NProgress.start();
+            },
+            complete:function(){
+                NProgress.done();
+            },
+            success: function(msg) {
+                // 删除之前的模态框
+                $('.cd-submit-modal').remove();
+                if(msg.status == 1){
+                    var html = create_submit_form(
+                        msg.message.challenge_id,
+                        msg.message.name,
+                        msg.message.description,
+                        msg.message.score,
+                        msg.message.online_time,
+                        msg.message.visit_times,
+                        msg.message.resource,
+                        msg.message.challenge_document,
+                        msg.message.author_name
+                    );
+                    console.log(html);
+                    $('#container').append(html);
+                    var form_modal = $('.cd-submit-modal');
+                    form_modal.addClass('is-visible');
+                    $(".cd-form").addClass('is-selected');
+
+                    //关闭弹出窗口
+                    $('.cd-submit-modal').on('click', function(event){
+                        if( $(event.target).is(form_modal) || $(event.target).is('.cd-close-form') ) {
+                            form_modal.removeClass('is-visible');
+                        }
+                    });
+                    //使用Esc键关闭弹出窗口
+                    $(document).keyup(function(event){
+                        if(event.which=='27'){
+                            form_modal.removeClass('is-visible');
+                        }
+                    });
+
+                    $(document).ready(function(){
+                      $(".submit-form").submit(function(e){
+                        e.preventDefault();
+                        var length = e.target.children.length
+                        var type = e.target.children[length - 1].children[0].id
+                        if (startswith(type, "submit")){
+                            var challenge_id = e.target.children[0].children[0].value
+                            var flag = e.target.children[1].children[0].value
+                            submit_flag(challenge_id, flag)
+                            return;
+                        }
+
+                      });
+                    });
+                }
+            }
+        });
+    }
+
+
+    function submit_flag(challenge_id, flag) {
+        console.log(challenge_id);
+        console.log(flag);
+        var url = '/challenge/submit';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                'flag':flag,
+                'challenge_id':challenge_id,
+            },
+            dataType: "json",
+            beforeSend:function(){
+                NProgress.start();
+            },
+            complete:function(){
+                NProgress.done();
+            },
+            success: function(msg) {
+                if(msg.status == 1){
+                    show_pnotify("Success!", msg.message, "success")
+                }else{
+                    show_pnotify("Failed!", msg.message, "error")
+                }
+            }
+        });
+    }
+
+    function create_submit_form(challenge_id, name, description, score, online_time, visit_times, resource, challenge_document, author_name) {
+        var html = '';
+        html += '<div class="cd-submit-modal">';
+        html += '<div class="cd-submit-modal-container">';
+        html += '<div class="cd-submit">';
+        html += '<p>' + '名称 : ' + name + '</p>';
+        html += '<p>' + '描述 : ' + description + '</p>';
+        html += '<p>' + '分数 : ' + score + '</p>';
+        html += '<p>' + '上线时间 : ' + online_time + '</p>';
+        html += '<p>' + '点击量 : ' + visit_times + '</p>';
+        html += '<p>' + '资源 : ' + resource + '</p>';
+        html += '<p>' + '参考资料 : ' + challenge_document + '</p>';
+        html += '<p>' + '作者 : ' + author_name + '</p>';
+        html += '<form class="cd-form submit-form" action="/challenge/submit" method="POST">';
+        html += '<p class="fieldset">';
+        html += '<input  name="challenge_id" value="'+challenge_id+'" type="hidden">';
+        html += '</p>';
+        html += '<p class="fieldset">';
+        html += '<input  name="flag" class="full-width has-padding has-border" id="submit-flag" type="text" placeholder="请输入 flag">';
+        html += '</p>';
+        html += '<p class="fieldset">';
+        html += '<input class="full-width2" id="submit-input-button" type="submit">';
+        html += '</p>';
+        html += '</form>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+        return html;
+    }
+// form_modal.addClass('is-visible'); 
+</script>
+

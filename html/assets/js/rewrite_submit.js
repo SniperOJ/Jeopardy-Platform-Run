@@ -51,7 +51,8 @@ function login(username, password, captcha){
 	    },
 	    success: function(msg) {
 	    	if (msg.status == 1){
-	    		show_pnotify("Success!", msg.message, "success")
+	    		location.reload()
+	    		// show_pnotify("Success!", msg.message, "info")
 	    	}else{
 	    		show_pnotify("Failed!", msg.message, "error")
 	    		// play the sound
@@ -85,7 +86,7 @@ function register(username, password, email, college, captcha){
 	    },
 	    success: function(msg) {
 	        if (msg.status == 1){
-	        	show_pnotify("Success!", msg.message, "success")
+	        	show_pnotify("Success!", msg.message, "info")
 	        }else{
 	        	show_pnotify("Failed!", msg.message, "error")
 	        	// play the sound

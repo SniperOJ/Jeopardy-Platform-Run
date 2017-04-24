@@ -16,6 +16,7 @@
    box-shadow: 1px 1px #9E9E9E;
    width: 180px;
    height: 120px;
+   text-align: center;
    border-radius: 3px;
    background-color: #536DFE;
    /* end fluffy */
@@ -28,5 +29,6 @@
   .grid-item {
     width: 120px;
     height: 80px;
+    text-align: center;
   }
 }
