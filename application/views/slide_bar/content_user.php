@@ -190,7 +190,7 @@
             },
             success: function(msg) {
                 if(msg.status == 1){
-                  console.log(msg);
+                  // console.log(msg);
 
                     // load to view
                     var html = '';
@@ -599,10 +599,10 @@
 
 <script type="text/javascript">
     $(".challenge-item").on('click', function() {
-        console.log("正在绑定...")
+        // console.log("正在绑定...")
         // 获取该题目的数据
         var challenge_id = $(this).id;
-        console.log(challenge_id);
+        // console.log(challenge_id);
         
     });
 
@@ -636,7 +636,7 @@
                         msg.message.challenge_document,
                         msg.message.author_name
                     );
-                    console.log(html);
+                    // console.log(html);
                     $('#container').append(html);
                     var form_modal = $('.cd-submit-modal');
                     form_modal.addClass('is-visible');

@@ -1,5 +1,5 @@
 function log(word) {
-    console.log(word)
+    // console.log(word)
 }
 
 function clear_attr(elem){
