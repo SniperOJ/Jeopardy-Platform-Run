@@ -500,7 +500,7 @@
       border-radius: 0.25em;
     }
     .cd-form input.full-width {
-      width: 80%;
+      width: 85%;
     }
     .cd-form input.full-width2 {
       width: 94%;

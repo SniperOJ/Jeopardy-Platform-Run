@@ -8,7 +8,7 @@ $(function() {
 $(function(){
 	// default open
 	$('#container').addClass('display-nav');
-	$('#canvas').css('width', '80%');
+	$('#canvas').css('width', '85%');
 })
 
 // The toggleNav function itself
@@ -22,7 +22,7 @@ function toggleNavigation() {
 		// Open Nav
 		$('#container').addClass('display-nav');
 		// set convas width
-		$('#canvas').css('width', '80%');
+		$('#canvas').css('width', '85%');
 	}
 }
 
