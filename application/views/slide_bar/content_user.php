@@ -781,8 +781,9 @@
 
 <div class="rank-container">
 <h1>排行榜</h1>
+<li class="divider"></li>
 <table class="table table-hover">
-  <thead style="font-size: 15px;">
+  <thead>
     <tr>
       <th>排名</th>
       <th>用户名</th>
