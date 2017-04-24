@@ -758,7 +758,8 @@
     right: 0px;             /*举例右边3像素*/
     position:absolute;
     padding-bottom: 3px;
-    width: 32px;
+    width: 16px;
+    padding-left: 16px;
     height: 100%;
   }
 
