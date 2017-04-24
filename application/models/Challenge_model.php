@@ -33,6 +33,7 @@ class Challenge_model extends CI_Model {
             $challenge['submit_times'] = $this->get_challenge_submit_times($challenge_id);
             $challenge['is_solved'] = $this->is_solved_by_user_id($challenge['challenge_id'], $user_id);
             $challenge['author_name'] = $this->user_model->get_username_by_user_id($challenge['author_id']);
+            $challenge['online_time'] = $this->formatTime($challenge['online_time']);
             return $challenge;
         }else{
             return NULL;
@@ -51,6 +52,7 @@ class Challenge_model extends CI_Model {
             $challenge['submit_times'] = $this->get_challenge_submit_times($challenge_id);
             $challenge['is_solved'] = $this->is_solved_by_user_id($challenge['challenge_id'], $user_id);
             $challenge['author_name'] = $this->user_model->get_username_by_user_id($challenge['author_id']);
+            $challenge['online_time'] = $this->formatTime($challenge['online_time']);
             return $challenge;
         }else{
             return NULL;
@@ -82,6 +84,7 @@ class Challenge_model extends CI_Model {
             $challenges[$i]['submit_times'] = $this->get_challenge_submit_times($challenges[$i]['challenge_id']);
             $challenges[$i]['is_solved'] = $this->is_solved_by_user_id($challenges[$i]['challenge_id'], $user_id);
             $challenges[$i]['author_name'] = $this->user_model->get_username_by_user_id($challenges[$i]['author_id']);
+            $challenges[$i]['online_time'] = $this->formatTime($challenges[$i]['online_time']);
         }
         return $challenges;
     }
@@ -150,6 +153,7 @@ class Challenge_model extends CI_Model {
             $challenges[$i]['submit_times'] = $this->get_challenge_submit_times($challenges[$i]['challenge_id']);
             $challenges[$i]['is_solved'] = $this->is_solved_by_user_id($challenges[$i]['challenge_id'], $user_id);
             $challenges[$i]['author_name'] = $this->user_model->get_username_by_user_id($challenges[$i]['author_id']);
+            $challenges[$i]['online_time'] = $this->formatTime($challenges[$i]['online_time']);
         }
         return $challenges;
     }
