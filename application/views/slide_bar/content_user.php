@@ -764,7 +764,7 @@
 
 <script type="text/javascript">
   // 加载排行榜
-  $rank_container = $(".rank-container");
+  var rank_container = $(".rank-container");
   var url = "/user/score"
   $.ajax({
       type: "GET",
@@ -774,7 +774,18 @@
           if(msg.status == 1){
             var rank_data = msg.message;
             for (var i = rank_data.length - 1; i >= 0; i--) {
-              console.log(rank_data[i]);
+              var user_data = rank_data[i]
+              var html = ''
+              html +=  '<div class="user-item">';
+              html += '用户 id : '+user_data.user_id;
+              html += '用户名 : '+user_data.username;
+              html += '学校 : '+user_data.college;
+              html += '分数 : '+user_data.score;
+              html += '提交次数 : '+user_data.submit_times;
+              html += '通过次数 : '+user_data.accept_times;
+              html += '通过率 : '+user_data.pass_rate;
+              html += '</div>'
+              rank_container.append(html);
             }
           }
       }
