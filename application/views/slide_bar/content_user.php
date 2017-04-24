@@ -749,8 +749,6 @@
 </div>
 
 
-
-
 <style type="text/css">
   .rank-container{
     background-color: #FEDCBA;
@@ -787,7 +785,7 @@
         success: function(msg) {
             if(msg.status == 1){
               var rank_data = msg.message;
-              for (var i = rank_data.length - 1; i >= 0; i--) {
+              for (var i = 0; i < rank_data.length - 1; i++) {
                 var user_data = rank_data[i]
                 var html = ''
                 html +=  '<div class="user-item">';
