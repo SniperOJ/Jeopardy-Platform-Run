@@ -812,11 +812,11 @@
                 // html += '通过率 : '+user_data.pass_rate;
                 var user_data = rank_data[i]
                 var html = ''
-                html +=  '<tr class="hint--left" aria-label="' + user_data.college + '">';
+                html +=  '<tr class="hint--left" aria-label="' + '学校 : ' + user_data.college + '<br>通过率 : ' + user_data.pass_rate + '">';
                 html += '<td>' + (i + 1) + '</td>';
                 html += '<td>' + user_data.username + '</td>';
-                html += '<td>' + user_data.score + '</td>';
-                html += '</tr><br>'
+                html += '<td>' + user_data.score + ' ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '</td>';
+                html += '</tr>' 
                 rank_tbody.append(html);
               }
             }
