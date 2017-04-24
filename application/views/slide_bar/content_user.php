@@ -768,6 +768,7 @@
 </style>
 
 <div class="rank-container">
+<i class="hide-rank-container">Hide/Show</i>
 <h1>排行榜</h1>
 <table class="table table-hover">
   <thead>
@@ -784,6 +785,10 @@
 </div>
 
 <script type="text/javascript">
+  $('.hide-rank-container').on('click', function(){
+    $(".rank-tbody").toggle(1000);
+  });
+
   $(document).ready(function(){
     load_score();
   });
