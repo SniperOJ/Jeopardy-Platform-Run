@@ -10,6 +10,7 @@ $(function() {
 $(function(){
 	// default open
 	$('#container').addClass('display-nav');
+	$('#canvas').css('width', '80%');
 })
 
 // The toggleNav function itself
