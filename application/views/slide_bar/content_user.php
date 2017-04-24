@@ -155,7 +155,7 @@
                     for (var i = challenges.length - 1; i >= 0; i--) {
                         html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                         html += '<p style="text-align:center; font-size:18px;">'
-                        html += '名称 : ' + challenges[i].name + '<br>';
+                        html += challenges[i].name + '<br>';
                         html += '分数 : ' + challenges[i].score + '<br>';
                         html += '点击量 : ' + challenges[i].visit_times + '<br>';
                         html += '战况 : ' + challenges[i].solved_times + '/' + challenges[i].submit_times;
