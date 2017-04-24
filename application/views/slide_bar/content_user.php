@@ -770,16 +770,20 @@
 
 <style type="text/css">
 .hide-rank-container{  
-    background-color:aquamarine;  
     position:fixed;  
     height:36px;  
     width:36px;  
     right:0px;  
-    top:0px;  
+    top:0px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 36px;
     z-index: 999;
 }  
 </style>
-<i class="hide-rank-container">Hide/Show</i>
+<i class="hide-rank-container menu-icons glyphicon glyphicon-stats"></i>
+
+
 <div class="rank-container">
 <h1>排行榜</h1>
 <table class="table table-hover">
