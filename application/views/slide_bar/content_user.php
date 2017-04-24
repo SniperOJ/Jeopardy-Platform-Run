@@ -238,7 +238,6 @@
                     var html = '';
                     html += '<h1>All</h1>';
                     html += '<div class="grid">';
-
                     var challenges = msg.message;
                     for (var i = challenges.length - 1; i >= 0; i--) {
                         var color_class = get_challenge_item_class(challenges[i].type);
@@ -728,3 +727,5 @@
 
 </div>
 <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
+<div class="content-container">
+</div>
