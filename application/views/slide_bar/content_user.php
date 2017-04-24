@@ -805,7 +805,7 @@
                 var html = ''
                 html +=  '<tr>';
                 html += '<td>' + (i + 1) + '</td>';
-                html += '<td class="hint--bottom" aria-label="' + '学校 : ' + user_data.college + '>' + user_data.username + '</td>';
+                html += '<td class="hint--bottom" aria-label="' + '学校 : ' + user_data.college + '">' + user_data.username + '</td>';
                 html += '<td class="hint--bottom" aria-label="' + '通过率 : ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '">' + user_data.score + '  ' + user_data.pass_rate + '</td>';
                 html += '</tr>' 
                 rank_tbody.append(html);
