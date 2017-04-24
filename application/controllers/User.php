@@ -868,6 +868,7 @@ class User extends CI_Controller {
     {
         $this->session->sess_destroy();
         header('Location:/');
+        die();
     }
 
     public function is_admin()
