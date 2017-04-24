@@ -103,3 +103,10 @@ alter table `challenges` add `author_id` int NOT NULL DEFAULT 1;
 alter table `challenges` modify `author_id` int NOT NULL DEFAULT 1;
 
 alter table `challenges` modify `type` ENUM('web', 'pwn', 'stego', 'misc', 'crypto', 'forensics', 'other') DEFAULT 'other';
+
+
+alter table `users` add `actived` tinyint NOT NULL DEFAULT 0;
+alter table `users` add `actived` tinyint NOT NULL DEFAULT 0;
+
+alter table `users` add `active_code` varchar(32) DEFAULT NULL;
+alter table `users` add `active_code_alive_time` varchar(32) DEFAULT NULL;

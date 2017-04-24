@@ -58,7 +58,6 @@ class Home extends CI_Controller {
 
 	public function is_logined()
 	{
-		var_dump($this->session->user_id);
 	    if($this->session->user_id == NULL){
 	        return false;
 	    }else{
