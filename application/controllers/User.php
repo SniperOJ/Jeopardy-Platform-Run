@@ -877,7 +877,6 @@ class User extends CI_Controller {
     }
 
 
-
     public function score()
     {
         if($this->is_logined()){

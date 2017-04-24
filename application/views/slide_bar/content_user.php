@@ -743,8 +743,6 @@
 </div>
 <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
 
-<link rel="stylesheet" type="text/css" href="/assets/css/smooth-scrollbar.css">
-
 <div class="content-container">
 </div>
 
@@ -760,10 +758,22 @@
     height: 100%;
   }
 </style>
-<div class="rank">
+<div class="rank-container">
 
 </div>
 
 <script type="text/javascript">
   // 加载排行榜
+  $rank_container = $(".rank-container");
+  var url = "/user/score"
+  $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "json",
+      success: function(msg) {
+          if(msg.status == 1){
+            console.log(msg.message);
+          }
+      }
+  });
 </script>
