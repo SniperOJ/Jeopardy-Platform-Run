@@ -5,7 +5,7 @@
   background-color: #00006600;
   position: relative;
   width: 256px;
-  height: 160px;
+  height: 140px;
   font-size: 24px;
   color: #000;
   text-align: center;
