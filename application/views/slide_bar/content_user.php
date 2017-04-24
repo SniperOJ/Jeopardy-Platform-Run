@@ -1,3 +1,6 @@
+
+<script type="text/javascript" src="/assets/js/polling.js"></script>
+
 <h2 id="title"><i class="fa fa-sitemap"></i>SniperOJ</h2>
 <ul id="toggle" class="slide-bar-left">
 
