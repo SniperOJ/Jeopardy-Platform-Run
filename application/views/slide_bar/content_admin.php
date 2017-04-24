@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/assets/css/optiscroll.css">
+
 <h2 id="title"><i class="fa fa-sitemap"></i>Admin</h2>
 <ul id="toggle" class="slide-bar-left">
     
@@ -68,5 +70,17 @@
 
 </div>
 <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
-<div class="content-container">
+<div class="content-container optiscroll">
 </div>
+
+
+ <script type="text/javascript" src="/assets/js/jquery.optiscroll.min.js"></script>
+<script type="text/javascript">
+// init  optiscroll
+// plain JS version
+var element = document.querySelector('#scroll')
+var myOptiscrollInstance = new Optiscroll(element);
+
+// jQuery plugin
+$('#scroll').optiscroll()
+</script>
