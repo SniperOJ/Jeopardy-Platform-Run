@@ -16,7 +16,7 @@ function show_stack_topleft(type, title, text) {
     var opts = {
         title: "Over Here",
         text: "Check me out. I'm in a different stack.",
-        addclass: "stack-topleft",
+        // addclass: "stack-topleft",
         // stack: stack_topleft
     };
 
@@ -45,7 +45,7 @@ function show_process()
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "/challenges/progress",
+            url: "/challenge/progress",
             dataType: "json",
             success: function(msg) {
                 var size = msg.length
