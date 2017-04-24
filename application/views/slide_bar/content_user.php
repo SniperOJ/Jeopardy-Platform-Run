@@ -789,7 +789,7 @@
                 var user_data = rank_data[i]
                 var html = ''
                 html +=  '<div class="user-item">';
-                html += '排名 : ' + i;
+                html += '排名 : ' + (i + 1);
                 html += '用户名 : '+user_data.username;
                 html += '学校 : '+user_data.college;
                 html += '分数 : '+user_data.score;
