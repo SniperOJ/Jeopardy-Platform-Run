@@ -411,7 +411,7 @@ class Challenge extends CI_Controller {
         }
 
         $challenge_id = intval($this->input->post('challenge_id'));
-        $flag = intval($this->input->post('flag'));
+        $flag = $this->input->post('flag');
 
         if($this->challenge_model->is_challenge_existed($challenge_id) == false){
             die(json_encode(array(
