@@ -781,12 +781,12 @@
                 var user_data = rank_data[i]
                 var html = ''
                 html +=  '<div class="user-item">';
-                html += '用户 id : '+user_data.user_id;
+                html += '排名 : ' + i;
                 html += '用户名 : '+user_data.username;
                 html += '学校 : '+user_data.college;
                 html += '分数 : '+user_data.score;
-                html += '提交次数 : '+user_data.submit_times;
-                html += '通过次数 : '+user_data.accept_times;
+                // html += '提交次数 : '+user_data.submit_times;
+                // html += '通过次数 : '+user_data.accept_times;
                 html += '通过率 : '+user_data.pass_rate;
                 html += '</div>'
                 rank_container.append(html);
