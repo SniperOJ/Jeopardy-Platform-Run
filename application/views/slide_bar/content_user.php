@@ -828,9 +828,9 @@
               var rank_data = msg.message;
               rank_data.sort(function(a,b){
                 if(a.score == b.score){
-                  return (a.pass_rate - b.pass_rate);
+                  return (b.pass_rate - a.pass_rate);
                 }else{
-                  return (a.score - b.score);
+                  return (b.score - a.score);
                 }
               });
               for (var i = 0; i < rank_data.length - 1; i++) {
