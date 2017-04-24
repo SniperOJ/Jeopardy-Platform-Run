@@ -888,7 +888,7 @@ class User extends CI_Controller {
             ));
         }else{
             $this->session->sess_destroy();
-            redirect("/");
+            headers('Location:/');
         }
     }
 }
