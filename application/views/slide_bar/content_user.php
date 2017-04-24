@@ -771,13 +771,13 @@
 
 <table class="table table-hover">
   <caption>悬停表格布局</caption>
-  <thead>
+<!--   <thead>
     <tr>
       <th>排名</th>
       <th>用户名</th>
       <th>分数</th>
     </tr>
-  </thead>
+  </thead> -->
   <tbody class="rank-tbody">
 
   </tbody>
