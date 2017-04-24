@@ -35,6 +35,7 @@ class Home extends CI_Controller {
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
 			$this->load->view('/slide_bar/content_visitor.php');
+			$this->load->view('/home/content');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 			return;

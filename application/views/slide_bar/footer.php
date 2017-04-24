@@ -1,5 +1,3 @@
-        </div>
-        <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
 
         <div class="content-container">
         </div>
