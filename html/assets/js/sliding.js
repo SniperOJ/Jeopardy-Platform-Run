@@ -18,6 +18,8 @@ function toggleNavigation() {
 		$('#container').removeClass('display-nav');
 		// set convas width
 		$('#canvas').css('width', '100%');
+		// hide pnotify
+		PNotify.removeAll();
 	} else {
 		// Open Nav
 		$('#container').addClass('display-nav');
