@@ -66,7 +66,7 @@
   font-size: 20px;
   background-color: #EEEEEE;
   opacity:0.1;
-  color: #000;
+  color: grey;
 }
 .challenge:hover{
   transition: all 0.5s ease;
@@ -250,9 +250,9 @@
                         var color_class = get_challenge_item_class(challenges[i].type);
                         if(challenges[i].is_solved == false){
 
-                          html += '<div class="grid-item challenge-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                          html += '<div class="challenge-item grid-item" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                         }else{
-                          html += '<div class="grid-item challenge-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
+                          html += '<div class="challenge-item grid-item challenge-item-solved" onclick="javascript:show_challenge('+challenges[i].challenge_id+')">';
                           
                         }
                         html += '<p style="text-align:center;">'
