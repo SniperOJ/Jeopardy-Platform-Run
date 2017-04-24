@@ -743,8 +743,12 @@
 </div>
 <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
 
+
+
 <div class="content-container">
 </div>
+
+
 
 
 <style type="text/css">
@@ -752,12 +756,17 @@
     background-color: #FEDCBA;
     bottom: 0px;
     right: 0px;             /*举例右边3像素*/
-    position:fixed;    
+    position:absolute;
     padding-bottom: 3px;
-    width: 500px;
+    width: 32px;
     height: 100%;
   }
+
+  .rank-container:hover{
+  width: 200px;
+  }
 </style>
+
 <div class="rank-container">
 </div>
 
