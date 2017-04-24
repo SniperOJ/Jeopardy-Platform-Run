@@ -41,10 +41,7 @@
         </div>
         <ul>
             <li>
-                <a href="#">HIT-CTF-2017</a>
-            </li>
-            <li>
-                <a href="#">BCTF-2017</a>
+                <a href="#">即将上线</a>
             </li>
         </ul>
     </li>
@@ -56,10 +53,7 @@
         </div>
         <ul>
             <li>
-                <a href="#">web</a>
-            </li>
-            <li>
-                <a href="#">misc</a>
+                <a href="#">即将上线</a>
             </li>
         </ul>
     </li>

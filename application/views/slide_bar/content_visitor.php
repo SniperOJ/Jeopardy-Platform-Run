@@ -5,14 +5,9 @@
             <span class="menu-icons  fa fa-briefcase"></span>
             <a href="#">write-up</a><span class="the-btn fa fa-plus"></span>
         </div>
-        <ul>
             <li>
-                <a href="#">HIT-CTF-2017</a>
+                <a href="#">即将上线 , 敬请期待</a>
             </li>
-            <li>
-                <a href="#">BCTF-2017</a>
-            </li>
-        </ul>
     </li>
     <li class="cd-tutorials">
         <div>
@@ -21,10 +16,7 @@
         </div>
         <ul>
             <li>
-                <a href="#">web</a>
-            </li>
-            <li>
-                <a href="#">misc</a>
+                <a href="#">即将上线 , 敬请期待</a>
             </li>
         </ul>
     </li>
