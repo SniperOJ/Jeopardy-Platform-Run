@@ -764,7 +764,7 @@
   }
 
   .rank-container:hover{
-  width: 200px;
+  width: 360px;
   }
 </style>
 
