@@ -828,7 +828,11 @@
               var rank_data = msg.message;
               rank_data.sort(function(a,b){
                 if(a.score == b.score){
-                  return (b.pass_rate - a.pass_rate);
+                  if(b.pass_rate == a.pass_rate){
+                    return a.submit_times - b.submit_times;
+                  }else{
+                    return (b.pass_rate - a.pass_rate);
+                  }
                 }else{
                   return (b.score - a.score);
                 }
