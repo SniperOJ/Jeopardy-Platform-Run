@@ -748,13 +748,13 @@
 
 
 <style type="text/css">
-  .awdsda{
+  .rank-container{
     background-color: #FEDCBA;
-    bottom: 1px;
+    bottom: 0px;
     right: 0px;             /*举例右边3像素*/
     position:fixed;    
     padding-bottom: 3px;
-    width: 500px;    
+    width: 500px;
     height: 100%;
   }
 </style>
