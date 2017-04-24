@@ -826,6 +826,13 @@
         success: function(msg) {
             if(msg.status == 1){
               var rank_data = msg.message;
+              rank_data.sort(function(a,b){
+                if(a.score == b.score){
+                  return (a.pass_rate - b.pass_rate);
+                }else{
+                  return (a.score - b.score);
+                }
+              });
               for (var i = 0; i < rank_data.length - 1; i++) {
                 var user_data = rank_data[i]
                 var html = ''
