@@ -772,7 +772,10 @@
       dataType: "json",
       success: function(msg) {
           if(msg.status == 1){
-            console.log(msg.message);
+            var rank_data = msg.message;
+            for (var i = rank_data.length - 1; i >= 0; i--) {
+              console.log(rank_data[i]);
+            }
           }
       }
   });
