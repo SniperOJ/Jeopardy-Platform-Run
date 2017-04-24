@@ -773,8 +773,8 @@
   <thead>
     <tr>
       <th>排名</th>
-<!--       <th>用户名</th>
-      <th>分数</th> -->
+      <th>用户名</th>
+      <!-- <th>分数</th> -->
     </tr>
   </thead>
   <tbody class="rank-tbody">
