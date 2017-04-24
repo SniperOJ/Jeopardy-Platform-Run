@@ -768,7 +768,7 @@
 </style>
 
 <div class="rank-container">
-
+<h1>排行榜</h1>
 <table class="table table-hover">
   <thead>
     <tr>
