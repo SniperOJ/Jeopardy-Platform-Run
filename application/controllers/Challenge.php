@@ -429,15 +429,6 @@ class Challenge extends CI_Controller {
         }
 
         $user_id = $this->session->user_id;
-
-        // 用户是不是已经做过这道题了
-        if($this->challenge_model->is_solved_by_user_id($challenge_id, $user_id) == true){
-            die(json_encode(array(
-                'status' => 0, 
-                'message' => '您已经解决了该题目!不需要重复提交!',
-            )));
-        }
-
         $challenge_info = $this->challenge_model->get_challenge_info_full($challenge_id, $user_id);
 
         $current_flag = $challenge_info['flag'];
@@ -452,6 +443,14 @@ class Challenge extends CI_Controller {
         );
 
         $this->challenge_model->insert_submit_log($submit_info);
+
+        // 用户是不是已经做过这道题了
+        if($this->challenge_model->is_solved_by_user_id($challenge_id, $user_id) == true){
+            die(json_encode(array(
+                'status' => 0, 
+                'message' => '您已经解决了该题目!不需要重复提交!',
+            )));
+        }
 
 
         if($is_current == false){
