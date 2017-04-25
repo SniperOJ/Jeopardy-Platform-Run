@@ -483,6 +483,8 @@ class Challenge extends CI_Controller {
 
     public function is_brute_force($intervals)
     {
+        $user_id = $this->session->user_id;
+        $last_submit_time = $this->user_model->get_last_submit_time($user_id);
         return (($time - $last_submit_time) < $intervals);
     }
 
