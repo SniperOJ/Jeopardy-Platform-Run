@@ -2,8 +2,18 @@
 # coding:utf-8
 
 import MySQLdb
+import sys
 
-db = MySQLdb.connect("localhost","username","password","database")
+if len(sys.argv) != 4:
+    print "Usage : "
+    print "        python fix_score.py [USERNAME] [PASSWORD] [DATABASE]"
+    exit(1)
+
+username = sys.argv[1]
+password = sys.argv[2]
+database = sys.argv[3]
+
+db = MySQLdb.connect("localhost", username, password, database)
 cursor = db.cursor()
 
 def get_score_by_challenge_id(challenge_id):
