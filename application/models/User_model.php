@@ -71,6 +71,12 @@ class User_model extends CI_Model {
 		return $result;
 	}
 
+	function get_score_by_user_id($user_id){
+		$query = $this->db->get_where('users', array('user_id' => $user_id));
+		$result = $query->row_array();
+		return intval($result['score']);
+	}
+
 	/* Existed */
 	public function is_email_existed($email)
 	{
