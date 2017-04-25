@@ -457,6 +457,11 @@ class Challenge extends CI_Controller {
             'status' => 1, 
             'message' => 'flag正确!',
         ));
+
+        // update user score
+        $user_score = $this->user_model->get_score($user_id);
+        $this->user_model->set_score($user_id, $user_score + intval($challenge_info['score']));
+
     }
 
     public function progress(){
