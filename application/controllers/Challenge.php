@@ -485,6 +485,7 @@ class Challenge extends CI_Controller {
     {
         $user_id = $this->session->user_id;
         $last_submit_time = $this->user_model->get_last_submit_time($user_id);
+        $time = time();
         return (($time - $last_submit_time) < $intervals);
     }
 
