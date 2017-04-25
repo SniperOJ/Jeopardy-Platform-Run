@@ -460,7 +460,7 @@ class Challenge extends CI_Controller {
 
         // update user score
         $user_score = $this->user_model->get_score_by_user_id($user_id);
-        $this->user_model->set_score($user_id, $user_score + intval($challenge_info['score']));
+        $this->user_model->set_score_by_user_id($user_id, $user_score + intval($challenge_info['score']));
 
     }
 
