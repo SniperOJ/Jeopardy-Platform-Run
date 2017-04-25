@@ -191,4 +191,16 @@ class User_model extends CI_Model {
 		}
 		return $result;
 	}
+
+	public function get_last_submit_time($user_id)
+	{
+	    $query = $this->db->select(array('submit_time'))
+	    ->order_by('submit_time','desc')
+	    ->where(array(
+	        'user_id'=>$user_id,
+	    ))
+	    ->get('submit_log');
+	    $result = $query->row_array();
+	    return $result['submit_time'];
+	}
 }

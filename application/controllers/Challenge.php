@@ -410,6 +410,14 @@ class Challenge extends CI_Controller {
             )));
         }
 
+        $intervals = 10;
+        if($this->is_brute_force($intervals) == true){
+            die(json_encode(array(
+                'status' => 0, 
+                'message' => '请不要暴力猜解 flag , 每十秒只能提交一次!',
+            )));
+        }
+
         $challenge_id = intval($this->input->post('challenge_id'));
         $flag = $this->input->post('flag');
 
@@ -471,6 +479,11 @@ class Challenge extends CI_Controller {
         }else{
             echo '';
         }
+    }
+
+    public function is_brute_force($intervals)
+    {
+        return (($time - $last_submit_time) < $intervals);
     }
 
 }
