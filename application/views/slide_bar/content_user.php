@@ -709,24 +709,27 @@
         });
     }
 
-    function new_muti_challenge_document(argument) {
+    function new_muti_challenge_document(challenge_document) {
       // body...
+      eval('var challenge_document_json = ' + challenge_document);
+      return challenge_document_json;
     }
 
-    function handle_muti_challenge_document(challenge_document) {
-      // old
-      var html = "";
-      challenges = challenge_document.split("|");
-      for (var i = challenges.length - 1; i >= 0; i--) {
-        item = '<a href="' + challenges[i] + '">' + '参考资料' + (i+1) + '</a>'
-        html += item;
-      }
-      return html;
-    }
+    // function handle_muti_challenge_document(challenge_document) {
+    //   // old
+    //   var html = "";
+    //   challenges = challenge_document.split("|");
+    //   for (var i = challenges.length - 1; i >= 0; i--) {
+    //     item = '<a href="' + challenges[i] + '">' + '参考资料' + (i+1) + '</a>'
+    //     html += item;
+    //   }
+    //   return html;
+    // }
 
     function create_submit_form(challenge_id, name, description, score, online_time, visit_times, resource, challenge_document, author_name) {
         // init
-        challenge_document = handle_muti_challenge_document(challenge_document)
+        challenge_document = new_muti_challenge_document(challenge_document)
+        console.log(challenge_document);
         // build
         var html = '';
         html += '<div class="cd-submit-modal">';
