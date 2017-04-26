@@ -885,10 +885,10 @@
                 html +=  '<tr>';
                 html += '<td>' + (i + 1) + '</td>';
                 html += '<td>'
-                html += '<div class="hint--bottom" aria-label="' + '学校 : ' + user_data.college + '">' + user_data.username + '</div>';
+                html += '<div class="hint--top" aria-label="' + '学校 : ' + user_data.college + '">' + user_data.username + '</div>';
                 html += '</td>'
                 html += '<td>'
-                html += '<div class="hint--bottom" aria-label="' + '提交数量 : ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '">' + user_data.score + '  ' + '(' + user_data.pass_rate + '%)' + '</div>';
+                html += '<div class="hint--top" aria-label="' + '提交数量 : ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '">' + user_data.score + '  ' + '(' + user_data.pass_rate + '%)' + '</div>';
                 html += '</td>'
                 html += '</tr>' 
                 rank_tbody.append(html);
