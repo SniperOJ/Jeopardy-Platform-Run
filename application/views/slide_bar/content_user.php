@@ -744,9 +744,9 @@
         if (resource.length > 0){
           resource = build_resource(resource);
         }else{
-          challenge_document = "无"
+          resource = "无"
         }
-        console.log(challenge_document)
+        console.log(resource)
         // build
         var html = '';
         html += '<div class="cd-submit-modal">';
