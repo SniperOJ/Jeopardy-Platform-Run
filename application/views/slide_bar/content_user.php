@@ -710,13 +710,14 @@
     }
 
     function new_muti_challenge_document(challenge_document) {
-      eval('var challenge_document_json = \'' + challenge_document + '\'');
+      eval('var challenge_document_json = ' + challenge_document );
       return challenge_document_json;
     }
 
     function build_challenge_document_html(challenge_document) {
       html = "";
       console.log(challenge_document)
+      console.log(challenge_document.length)
       for (var i = challenge_document.length - 1; i >= 0; i--) {
         item = '<a href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
         html += item;
