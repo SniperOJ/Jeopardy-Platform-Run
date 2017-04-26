@@ -633,7 +633,7 @@
                         msg.message.online_time,
                         msg.message.visit_times,
                         msg.message.resource,
-                        msg.message.challenge_document,
+                        msg.message.document,
                         msg.message.author_name
                     );
                     // console.log(html);
