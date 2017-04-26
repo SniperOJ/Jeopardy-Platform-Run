@@ -796,8 +796,8 @@
     position:absolute;
     padding-bottom: 3px;
     width: 360px;
+    height: 500px;
     padding-left: 16px;
-    height: 100%;
     text-align: center;
     padding-top:10px;
   }
