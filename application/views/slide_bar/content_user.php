@@ -819,6 +819,8 @@
 </style>
 <i class="hide-rank-container menu-icons glyphicon glyphicon-eye-open"></i>
 
+<script type="text/javascript" src="/assets/js/jquery.optiscroll.min.js"></script>
+
 <div class="rank-container">
 <h1>排行榜</h1>
 <table class="table table-hover">
@@ -898,4 +900,8 @@
         }
     });
   }
+</script>
+
+<script type="text/javascript">
+  $('.rank-container').optiscroll()
 </script>
