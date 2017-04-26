@@ -710,7 +710,7 @@
     }
 
     function new_muti_challenge_document(challenge_document) {
-      eval('var challenge_document_json = ' + challenge_document);
+      eval('var challenge_document_json = "' + challenge_document + '"');
       return challenge_document_json;
     }
 
