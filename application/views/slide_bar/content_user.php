@@ -710,25 +710,22 @@
     }
 
     function new_muti_challenge_document(challenge_document) {
-      // body...
       eval('var challenge_document_json = ' + challenge_document);
       return challenge_document_json;
     }
 
-    // function handle_muti_challenge_document(challenge_document) {
-    //   // old
-    //   var html = "";
-    //   challenges = challenge_document.split("|");
-    //   for (var i = challenges.length - 1; i >= 0; i--) {
-    //     item = '<a href="' + challenges[i] + '">' + '参考资料' + (i+1) + '</a>'
-    //     html += item;
-    //   }
-    //   return html;
-    // }
+    function build_challenge_document_html(challenge_document) {
+      for (var i = challenge_document.length - 1; i >= 0; i--) {
+        item = '<a href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
+        html += item;
+      }
+      return html;
+    }
 
     function create_submit_form(challenge_id, name, description, score, online_time, visit_times, resource, challenge_document, author_name) {
         // init
         challenge_document = new_muti_challenge_document(challenge_document)
+        challenge_document = build_challenge_document_html(challenge_document)
         console.log(challenge_document);
         // build
         var html = '';
@@ -741,7 +738,7 @@
         html += '<h3>' + '上线时间 : ' + online_time + '</h3>';
         html += '<h3>' + '点击量 : ' + visit_times + '</h3>';
         html += '<h3>' + '资源 : ' + resource + '</h3>';
-        html += '<h3>' + '参考资料 : ' + challenge_document.url + '</h3>';
+        html += '<h3>' + '参考资料 : ' + challenge_document + '</h3>';
         html += '<h3>' + '作者 : ' + author_name + '</h3>';
         html += '<form class="cd-form submit-form" action="/challenge/submit" method="POST">';
         html += '<p class="fieldset">';
