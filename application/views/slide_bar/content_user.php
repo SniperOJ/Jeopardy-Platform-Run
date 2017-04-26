@@ -728,7 +728,6 @@
         // init
         challenge_document = new_muti_challenge_document(challenge_document)
         challenge_document = build_challenge_document_html(challenge_document)
-        console.log(challenge_document);
         // build
         var html = '';
         html += '<div class="cd-submit-modal">';
