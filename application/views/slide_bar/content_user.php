@@ -709,8 +709,12 @@
         });
     }
 
+    function new_muti_challenge_document(argument) {
+      // body...
+    }
 
     function handle_muti_challenge_document(challenge_document) {
+      // old
       var html = "";
       challenges = challenge_document.split("|");
       for (var i = challenges.length - 1; i >= 0; i--) {
