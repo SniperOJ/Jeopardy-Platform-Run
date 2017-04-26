@@ -725,13 +725,11 @@
 
     function build_resource(resource) {
       var last_char = resource[resource.length - 1]
-      console.log(last_char)
       if(last_char == '/'){
         html = '<a target="_blank" href="'+resource+'">题目地址</a>'
       }else{
         html = '<a target="_blank" href="'+resource+'">题目下载</a>'
       }
-      console.log(html)
       return html;
     }
 
@@ -743,15 +741,13 @@
         }else{
           challenge_document = "无"
         }
-        console.log(resource)
         if (resource.length > 0){
           resource = build_resource(resource);
         }else{
           challenge_document = "无"
         }
+        console.log(challenge_document)
         // build
-        
-
         var html = '';
         html += '<div class="cd-submit-modal">';
         html += '<div class="cd-submit-modal-container">';
