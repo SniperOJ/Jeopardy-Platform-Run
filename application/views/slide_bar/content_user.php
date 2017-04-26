@@ -741,7 +741,7 @@
         html += '<h3>' + '上线时间 : ' + online_time + '</h3>';
         html += '<h3>' + '点击量 : ' + visit_times + '</h3>';
         html += '<h3>' + '资源 : ' + resource + '</h3>';
-        html += '<h3>' + '参考资料 : ' + challenge_document + '</h3>';
+        html += '<h3>' + '参考资料 : ' + challenge_document.url + '</h3>';
         html += '<h3>' + '作者 : ' + author_name + '</h3>';
         html += '<form class="cd-form submit-form" action="/challenge/submit" method="POST">';
         html += '<p class="fieldset">';
