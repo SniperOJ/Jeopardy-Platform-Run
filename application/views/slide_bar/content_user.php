@@ -714,7 +714,7 @@
       var html = "";
       challenges = challenge_document.split("|");
       for (var i = challenges.length - 1; i >= 0; i--) {
-        item = '<a href="' + challenges[i] + '">' + '参考资料' + i + '</a>'
+        item = '<a href="' + challenges[i] + '">' + '参考资料' + (i+1) + '</a>'
         html += item;
       }
       return html;
