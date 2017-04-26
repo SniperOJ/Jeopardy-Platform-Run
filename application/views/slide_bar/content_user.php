@@ -715,12 +715,21 @@
     }
 
     function build_challenge_document_html(challenge_document) {
-      html = "";
+      var html = "";
       console.log(challenge_document)
       console.log(challenge_document.length)
       for (var i = challenge_document.length - 1; i >= 0; i--) {
         item = '<a target="_blank" href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
         html += item;
+      }
+      return html;
+    }
+
+    function build_resource(resource) {
+      if(resource.indexOf("http") == 0){
+        html = '<a target="_blank" href="'+resource+'"></a>'
+      }if(resource.indexOf("nc") == 0){
+        html = resource
       }
       return html;
     }
@@ -733,7 +742,13 @@
         }else{
           challenge_document = "无"
         }
+        if (resource.length > 0){
+          resource = build_resource(resource);
+        }else{
+          challenge_document = "无"
+        }
         // build
+        
 
         var html = '';
         html += '<div class="cd-submit-modal">';
