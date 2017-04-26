@@ -906,5 +906,5 @@
 </script>
 
 <script type="text/javascript">
-  $('.scrolbar-container').optiscroll()
+  $('.rank-container').optiscroll()
 </script>
