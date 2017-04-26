@@ -727,9 +727,14 @@
 
     function create_submit_form(challenge_id, name, description, score, online_time, visit_times, resource, challenge_document, author_name) {
         // init
+        if (challenge_document.length > 0){
         challenge_document = new_muti_challenge_document(challenge_document)
         challenge_document = build_challenge_document_html(challenge_document)
+        }else{
+          challenge_document = "无"
+        }
         // build
+
         var html = '';
         html += '<div class="cd-submit-modal">';
         html += '<div class="cd-submit-modal-container">';
