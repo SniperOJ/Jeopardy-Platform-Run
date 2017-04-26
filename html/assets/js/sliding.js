@@ -2,6 +2,11 @@
 $(function() {
 	$('.toggle-nav').click(function() {
 		toggleNavigation();
+		var rank_container = $(".rank-container")
+		console.log(rank_container.css("display"))
+		if (rank_container.css("display")!="none"){
+			$(".hide-rank-container").click()
+		}
 	});
 });
 
