@@ -15,5 +15,5 @@
 		<p style="text-align: left; margin-left: 32%;"><strong>QQ群 : </strong>&nbsp;&nbsp;&nbsp;514782018</p>
 		<p style="text-align: left; margin-left: 32%;"><strong>邮  箱 : </strong>&nbsp;&nbsp;&nbsp;admin@sniperoj.cn</p>
 		<p style="text-align: right;margin-right: 24%;">一航</p>
-		<p style="text-align: right;margin-right: 24%;">于 2017 年 4 月 25 日深夜</p>
+		<p style="text-align: right;margin-right: 24%;">于 2017 年 4 月 25 日</p>
 </div>
