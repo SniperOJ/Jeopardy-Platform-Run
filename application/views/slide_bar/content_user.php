@@ -726,10 +726,11 @@
     }
 
     function build_resource(resource) {
-      if(resource.indexOf("http") == 0){
-        html = '<a target="_blank" href="'+resource+'"></a>'
-      }if(resource.indexOf("nc") == 0){
-        html = resource
+      var last_char = resource[resource.length - 1]
+      if(last_char == '/'){
+        html = '<a target="_blank" href="'+resource+'">题目地址</a>'
+      }else{
+        html = '<a target="_blank" href="'+resource+'">题目下载</a>'
       }
       return html;
     }
