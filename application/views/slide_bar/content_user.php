@@ -719,7 +719,7 @@
       console.log(challenge_document)
       console.log(challenge_document.length)
       for (var i = challenge_document.length - 1; i >= 0; i--) {
-        item = '<a href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
+        item = '<a target="_blank" href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
         html += item;
       }
       return html;
