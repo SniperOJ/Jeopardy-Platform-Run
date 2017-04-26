@@ -709,7 +709,21 @@
         });
     }
 
+
+    function handle_muti_challenge_document(challenge_document) {
+      var html = "";
+      challenges = challenge_document.split("|");
+      for (var i = challenges.length - 1; i >= 0; i--) {
+        item = '<a href="' + challenges[i] + '">' + '参考资料' + i + '</a>'
+        html += item;
+      }
+      return html;
+    }
+
     function create_submit_form(challenge_id, name, description, score, online_time, visit_times, resource, challenge_document, author_name) {
+        // init
+        challenge_document = handle_muti_challenge_document(challenge_document)
+        // build
         var html = '';
         html += '<div class="cd-submit-modal">';
         html += '<div class="cd-submit-modal-container">';
