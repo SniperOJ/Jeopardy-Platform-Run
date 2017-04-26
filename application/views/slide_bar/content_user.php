@@ -716,8 +716,6 @@
 
     function build_challenge_document_html(challenge_document) {
       var html = "";
-      console.log(challenge_document)
-      console.log(challenge_document.length)
       for (var i = challenge_document.length - 1; i >= 0; i--) {
         item = '<a target="_blank" href="' + challenge_document[i].url + '">' + challenge_document[i].title + '</a>'
         html += item;
@@ -727,11 +725,13 @@
 
     function build_resource(resource) {
       var last_char = resource[resource.length - 1]
+      console.log(last_char)
       if(last_char == '/'){
         html = '<a target="_blank" href="'+resource+'">题目地址</a>'
       }else{
         html = '<a target="_blank" href="'+resource+'">题目下载</a>'
       }
+      console.log(html)
       return html;
     }
 
@@ -743,6 +743,7 @@
         }else{
           challenge_document = "无"
         }
+        console.log(resource)
         if (resource.length > 0){
           resource = build_resource(resource);
         }else{
@@ -894,7 +895,6 @@
                 html += '<div class="hint--bottom" aria-label="' + '提交数量 : ' + ' (' + user_data.accept_times + ' / ' + user_data.submit_times + ')' + '">' + user_data.score + '  ' + '(' + user_data.pass_rate + '%)' + '</div>';
                 html += '</td>'
                 html += '</tr>' 
-                console.lo
                 rank_tbody.append(html);
               }
             }
