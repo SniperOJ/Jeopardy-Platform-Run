@@ -796,7 +796,7 @@
     position:absolute;
     padding-bottom: 3px;
     width: 360px;
-    height: 500px;
+    height: 100%;
     padding-left: 16px;
     text-align: center;
     padding-top:10px;
