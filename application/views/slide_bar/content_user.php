@@ -823,18 +823,20 @@
 
 <div class="rank-container">
 <h1>排行榜</h1>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>排名</th>
-      <th>用户名</th>
-      <th>分数</th>
-    </tr>
-  </thead>
-  <tbody class="rank-tbody">
+<div class="scrolbar-container" style="'height: 100px; width: 100px;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>用户名</th>
+        <th>分数</th>
+      </tr>
+    </thead>
+    <tbody class="rank-tbody">
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -903,5 +905,5 @@
 </script>
 
 <script type="text/javascript">
-  $('.rank-container').optiscroll()
+  $('.scrolbar-container').optiscroll()
 </script>
