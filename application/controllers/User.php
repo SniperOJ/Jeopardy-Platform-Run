@@ -785,6 +785,13 @@ class User extends CI_Controller {
             )));
         }
 
+        if($this->user_model->is_reset_code_not_used($reset_code) == false){
+            die(json_encode(array(
+                'status' => 0, 
+                'message' => '重置码已被使用!',
+            )));
+        }
+
         /* 密码长度 */
         if($this->check_password_length($new_password) == false){
             die(json_encode(array(
@@ -817,8 +824,6 @@ class User extends CI_Controller {
 
 
         // destory reset_code
-        // 因为这里 destory 掉了 reset code 也就是说
-        // 一旦被成功使用 , 就消失了 , 因此不需要再进行判断
         $this->destory_reset_code($user_id);
 
         // set session

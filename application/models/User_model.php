@@ -150,6 +150,15 @@ class User_model extends CI_Model {
 		return $this->db->set('verified', '1')->where('user_id', $user_id)->update('reset_password');
 	}
 
+	public function is_reset_code_not_used($reset_code)
+	{
+		$query = $this->db
+			->where('reset_code', $reset_code)
+			->get('reset_password');
+		$result = $query->row_array();
+		return (intval($result['verified']) == 1);
+	}
+
 	public function destory_active_code($user_id)
 	{
 		return $this->db->set('active_code', '')->where('user_id', $user_id)->update('users');
