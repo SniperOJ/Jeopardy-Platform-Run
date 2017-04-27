@@ -20,16 +20,6 @@ $('.cd-register').on('click', function() {
     register_selected();
 });
 
-$('.cd-forget').on('click', function() {
-    form_modal.addClass('is-visible');
-    forget_selected();
-});
-
-$('.cd-reset').on('click', function() {
-    form_modal.addClass('is-visible');
-    reset_selected();
-});
-
 //关闭弹出窗口
 $('.cd-user-modal').on('click', function(event){
     if( $(event.target).is(form_modal) || $(event.target).is('.cd-close-form') ) {

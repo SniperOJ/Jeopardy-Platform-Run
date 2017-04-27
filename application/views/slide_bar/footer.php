@@ -84,7 +84,9 @@
                 <p class="fieldset">
                     <input name="password" class="full-width has-padding has-border" id="register-password" type="password"  placeholder="请输入新密码">
                 </p>
-                <input name="reset_code" type="hidden" id="reset-code-input">
+                <p class="fieldset">
+                    <input name="reset_code" type="hidden" id="reset-code-input">
+                </p>
                 <p class="fieldset">
                     <input class="full-width2" id="reset-input-button" type="submit" value="重置密码">
                 </p>
