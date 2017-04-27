@@ -804,19 +804,20 @@ class User extends CI_Controller {
 
         $user_id = $this->user_model->get_user_id_by_reset_code($reset_code);
         $new_salt = $this->get_salt();
-
+var_dump("1");
         if($this->do_reset($user_id, $new_password, $new_salt) == false){
             die(json_encode(array(
                 'status' => 0, 
                 'message' => '重置密码失败!请与管理员联系!',
             )));
         }
-
+        var_dump("2");
         echo json_encode(array(
             'status' => 1, 
             'message' => '重置密码成功!',
         ));
 
+var_dump("3");
         // destory reset_code
         // 因为这里 destory 掉了 reset code 也就是说
         // 一旦被成功使用 , 就消失了 , 因此不需要再进行判断
