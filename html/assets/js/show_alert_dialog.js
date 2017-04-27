@@ -1,9 +1,11 @@
 var form_modal = $('.cd-user-modal');
 var form_login = $('#cd-login');
 var form_register = $('#cd-register');
+var form_forget = $('#cd-forget');
 var form_modal_tab = $('.cd-switcher')
 var tab_login = form_modal_tab.children('li').eq(0).children('a');
 var tab_register = form_modal_tab.children('li').eq(1).children('a');
+var tab_forget = form_modal_tab.children('li').eq(2).children('a');
 
 $('.cd-login').on('click', function() {
     form_modal.addClass('is-visible');
@@ -13,6 +15,11 @@ $('.cd-login').on('click', function() {
 $('.cd-register').on('click', function() {
     form_modal.addClass('is-visible');
     register_selected();
+});
+
+$('.cd-forget').on('click', function() {
+    form_modal.addClass('is-visible');
+    forget_selected();
 });
 
 //关闭弹出窗口
@@ -31,26 +38,56 @@ $(document).keyup(function(event){
 //切换表单
 form_modal_tab.on('click', function(event) {
     event.preventDefault();
-    ( $(event.target).is( tab_login ) ) ? login_selected() : register_selected();
+    if ($(event.target).is(tab_login)){
+        login_selected();
+        return;
+    }
+
+    if ($(event.target).is(tab_register)){
+        register_selected();
+        return;
+    }
+
+    if ($(event.target).is(tab_forget)){
+        forget_selected();
+        return;
+    }
 });
 
 function login_selected(){
-    // get captcha
     get_captcha()
+
     form_login.addClass('is-selected');
     form_register.removeClass('is-selected');
-    // form_forgot_password.removeClass('is-selected');
+    form_forget.removeClass('is-selected')
+
     tab_login.addClass('selected');
     tab_register.removeClass('selected');
+    tab_forget.removeClass('selected');
 }
 
 function register_selected(){
     get_captcha()
-    form_login.removeClass('is-selected');
+
     form_register.addClass('is-selected');
-    // form_forgot_password.removeClass('is-selected');
-    tab_login.removeClass('selected');
+    form_login.removeClass('is-selected');
+    form_forget.removeClass('is-selected')
+    
     tab_register.addClass('selected');
+    tab_login.removeClass('selected');
+    tab_forget.removeClass('selected');
+}
+
+function forget_selected(){
+    get_captcha()
+
+    form_forget.addClass('is-selected')
+    form_login.removeClass('is-selected');
+    form_register.removeClass('is-selected');
+
+    tab_forget.addClass('selected');
+    tab_login.removeClass('selected');
+    tab_register.removeClass('selected');
 }
 
 function get_captcha() {

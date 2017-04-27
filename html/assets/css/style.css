@@ -81,11 +81,11 @@ background: #FFF;
 color: #505260;
 }
 
-#cd-login, #cd-register {
+#cd-login, #cd-register, #cd-forget {
 display: none;
 }
 
-#cd-login.is-selected, #cd-register.is-selected{
+#cd-login.is-selected, #cd-register.is-selected, #cd-forget.is-selected{
 display: block;
 }
 
@@ -319,10 +319,10 @@ display: block;
   }
 }
 
-#cd-login, #cd-register, #cd-reset-password {
+#cd-login, #cd-register, #cd-forget {
   display: none;
 }
 
-#cd-login.is-selected, #cd-register.is-selected, #cd-reset-password.is-selected {
+#cd-login.is-selected, #cd-register.is-selected, #cd-forget.is-selected {
   display: block;
 }

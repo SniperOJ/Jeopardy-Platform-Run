@@ -15,6 +15,7 @@
         <ul class="cd-switcher"> 
             <li><a>登录</a></li> 
             <li><a>注册</a></li> 
+            <li><a>忘记密码</a></li> 
         </ul> 
         <div id="cd-login">  
             <form class="cd-form" action="/user/login" method="POST"> 
@@ -34,7 +35,7 @@
                 </p>
             </form> 
         </div> 
- 
+
         <div id="cd-register">  
             <form class="cd-form" action="/user/register" method="POST"> 
                 <p class="fieldset">
@@ -56,6 +57,22 @@
                 </p><br>
                 <p class="fieldset">
                     <input class="full-width2" id="register-input-button"  type="submit" value="注册新用户">
+                </p>
+            </form> 
+        </div> 
+
+        <div id="cd-forget">  
+            <form class="cd-form" action="/user/forget" method="POST"> 
+                <p class="fieldset">
+                    <input name="email" class="full-width has-padding has-border" id="register-email" type="email" placeholder="请输入邮箱">
+                </p>
+                <p  style="width: 50%;float:left;">
+                    <input name=captcha class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
+                </p>
+                <p class="captcha" onclick="javascript:get_captcha()">
+                </p><br>
+                <p class="fieldset">
+                    <input class="full-width2" id="login-input-button" type="submit" value="登 录">
                 </p>
             </form> 
         </div>         
