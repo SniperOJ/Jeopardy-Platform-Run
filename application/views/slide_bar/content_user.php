@@ -613,7 +613,7 @@
         $.ajax({
             type: "GET",
             url: url,
-            dataType: "html",
+            dataType: "json",
             beforeSend:function(){
                 disable_button_login()
                 $('.cd-user-modal').removeClass('is-visible');
@@ -643,7 +643,7 @@
                     form_modal.addClass('is-visible');
                     $(".cd-form").addClass('is-selected');
 
-                    $("#markdown-container").html('```json\n' + msg.message + '\n```');
+                    $("#markdown-container").html('```json\n' + html + '\n```');
 
                     // show markdown 
                     show_markdown("markdown-container")
