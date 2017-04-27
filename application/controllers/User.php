@@ -801,8 +801,7 @@ class User extends CI_Controller {
             )));
         }
 
-        var_dump("expression");
-        die();
+
         $user_id = $this->user_model->get_user_id_by_reset_code($reset_code);
         $new_salt = $this->get_salt();
 
