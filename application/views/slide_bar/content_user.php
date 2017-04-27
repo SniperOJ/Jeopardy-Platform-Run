@@ -643,6 +643,7 @@
                     form_modal.addClass('is-visible');
                     $(".cd-form").addClass('is-selected');
 
+                    $("#markdown-container").html('```json\n' + msg.message + '\n```');
 
                     // show markdown 
                     show_markdown("markdown-container")
