@@ -785,7 +785,16 @@ class User extends CI_Controller {
             )));
         }
 
-        if($this->user_model->is_reset_code_not_used($reset_code) == false){
+        $reset_code_alive_time = $this->user_model->get_reset_code_alive_time($reset_code);
+
+        if($this->is_overdue($reset_code_alive_time)){
+            die(json_encode(array(
+                'status' => 0, 
+                'message' => '重置码已过期!',
+            )));
+        }
+
+        if($this->user_model->is_reset_code_used($reset_code) == true){
             die(json_encode(array(
                 'status' => 0, 
                 'message' => '重置码已被使用!',
