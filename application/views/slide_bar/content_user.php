@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <style type=text/css>
 .challenge-item{
   margin:10px;
@@ -760,6 +761,10 @@
         html += '<h3>' + '资源 : ' + resource + '</h3>';
         html += '<h3>' + '参考资料 : ' + challenge_document + '</h3>';
         html += '<h3>' + '题目提供者 : ' + author_name + '</h3>';
+        html += '<textarea id="markdown-container"># Mardkwon!Test</textarea>';
+
+
+
         html += '<form class="cd-form submit-form" action="/challenge/submit" method="POST">';
         html += '<p class="fieldset">';
         html += '<input  name="challenge_id" value="'+challenge_id+'" type="hidden">';
@@ -907,4 +912,16 @@
 
 <script type="text/javascript">
   $('.rank-container').optiscroll()
+</script>
+
+
+<script type="text/javascript">
+  var markdown = new SimpleMDE({
+    element: document.getElementById("markdown-container"),
+    spellChecker: false,
+    autosave: {
+      enabled: true,
+      unique_id: "demo2",
+    },
+  });
 </script>
