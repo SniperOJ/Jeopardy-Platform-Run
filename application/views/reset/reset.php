@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(document).ready(function()) {
+$(document).ready(function() {
 	// set form hidden field as reset code
 	$("#reset-code-input").value(<?php echo $reset_code; ?>);
 	// show this form
