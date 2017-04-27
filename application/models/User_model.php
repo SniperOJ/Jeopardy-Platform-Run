@@ -147,7 +147,6 @@ class User_model extends CI_Model {
 
 	public function destory_reset_code($user_id)
 	{
-		$this->user_model->destory_reset_code($user_id);
 		return $this->db->set('verified', '1')->where('user_id', $user_id)->update('reset_password');
 	}
 
