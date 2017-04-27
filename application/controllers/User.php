@@ -736,17 +736,26 @@ class User extends CI_Controller {
         if($this->is_overdue($reset_code_alive_time)){
             die(json_encode(array(
                 'status' => 0, 
-                'message' => '充值码已过期!请重新申请重置码!',
+                'message' => '重置码已过期!请重新申请重置码!',
             )));
         }
 
         // 这里直接将 reset_code 返回 , 前端收到以后添加到表单隐藏域中
         // 在发送新密码的时候需要第二次进行验证
         // 或者其实用 Cookie 应该也行
-        echo json_encode(array(
-            'status' => 1, 
-            'message' => $reset_code,
-        ));
+        // echo json_encode(array(
+        //     'status' => 1, 
+        //     'message' => $reset_code,
+        // ));
+        // 这里直接加载view (不太好吧...)
+        // 加载到主页 , 然后带上  reset_code
+        $this->load->view('/templates/header');
+        $this->load->view('/slide_bar/header');
+        $this->load->view('/slide_bar/content_visitor.php');
+        $this->load->view('/home/content');
+        $this->load->view('/slide_bar/footer');
+        $this->load->view('/templates/footer');
+        $this->load->view('/reset/reset', array('reset_code'=>$reset_code));
     }
 
 

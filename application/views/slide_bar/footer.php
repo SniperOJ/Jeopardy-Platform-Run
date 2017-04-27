@@ -16,6 +16,7 @@
             <li><a>登录</a></li> 
             <li><a>注册</a></li> 
             <li><a>忘记密码</a></li> 
+            <li style="display: none;"><a>重置密码</a></li> 
         </ul> 
         <div id="cd-login">  
             <form class="cd-form" action="/user/login" method="POST"> 
@@ -26,7 +27,7 @@
                     <input name="password" class="full-width has-padding has-border" id="login-password" type="password"  placeholder="输入密码">
                 </p>
                 <p  style="width: 50%;float:left;">
-                    <input name=captcha class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
+                    <input name="captcha" class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
                 </p>
                 <p class="captcha" onclick="javascript:get_captcha()">
                 </p><br>
@@ -67,15 +68,30 @@
                     <input name="email" class="full-width has-padding has-border" id="register-email" type="email" placeholder="请输入邮箱">
                 </p>
                 <p  style="width: 50%;float:left;">
-                    <input name=captcha class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
+                    <input name="captcha" class="full-width has-padding has-border" id="login-captcha" type="text" placeholder="请输入验证码">
                 </p>
                 <p class="captcha" onclick="javascript:get_captcha()">
                 </p><br>
                 <p class="fieldset">
-                    <input class="full-width2" id="login-input-button" type="submit" value="登 录">
+                    <input class="full-width2" id="forget-input-button" type="submit" value="忘记密码">
                 </p>
             </form> 
-        </div>         
+        </div>  
+
+
+        <div id="cd-reset">  
+            <form class="cd-form" action="/user/reset" method="POST"> 
+                <p class="fieldset">
+                    <input name="password" class="full-width has-padding has-border" id="register-password" type="password"  placeholder="请输入新密码">
+                </p>
+                <input name="reset_code" type="hidden" id="reset-code-input">
+                <p class="fieldset">
+                    <input class="full-width2" id="reset-input-button" type="submit" value="重置密码">
+                </p>
+            </form>
+        </div>
+
+
     </div> 
 </div>  
 

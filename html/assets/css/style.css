@@ -51,15 +51,15 @@ transition-duration: 0.3s;
 }
 .cd-user-modal-container .cd-switcher{
 list-style-type: none;
+width: 100%;
+display: flex;
 }
 .cd-user-modal-container .cd-switcher:after {
 content: "";
-display: table;
 clear: both;
 }
 .cd-user-modal-container .cd-switcher li {
-width: 50%;
-float: left;
+flex: 1;
 text-align: center;
 }
 .cd-user-modal-container .cd-switcher li:first-child a {
@@ -81,11 +81,11 @@ background: #FFF;
 color: #505260;
 }
 
-#cd-login, #cd-register, #cd-forget {
+#cd-login, #cd-register, #cd-forget, #cd-reset {
 display: none;
 }
 
-#cd-login.is-selected, #cd-register.is-selected, #cd-forget.is-selected{
+#cd-login.is-selected, #cd-register.is-selected, #cd-forget.is-selected, #cd-reset.is-selected{
 display: block;
 }
 
@@ -144,11 +144,6 @@ display: block;
   content: "";
   display: table;
   clear: both;
-}
-.cd-user-modal-container .cd-switcher li {
-  width: 50%;
-  float: left;
-  text-align: center;
 }
 .cd-user-modal-container .cd-switcher li:first-child a {
   border-radius: .25em 0 0 0;
@@ -317,12 +312,4 @@ display: block;
   .cd-close-form {
     display: none;
   }
-}
-
-#cd-login, #cd-register, #cd-forget {
-  display: none;
-}
-
-#cd-login.is-selected, #cd-register.is-selected, #cd-forget.is-selected {
-  display: block;
 }

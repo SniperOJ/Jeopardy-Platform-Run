@@ -20,6 +20,20 @@ $(document).ready(function(){
 		register(username, password, email, college, captcha)
 		return;
     }
+
+    if (startswith(type, "forget")){
+		var email = e.target.children[0].children[0].value
+		var captcha = e.target.children[1].children[0].value
+		forget(email, captcha)
+		return;
+    }
+
+    if (startswith(type, "reset")){
+    	var password = e.target.children[0].children[0].value
+    	var reset_code = e.target.children[1].children[0].value
+    	reset(password, reset_code)
+    	return;
+    }
   });
 });
 
@@ -104,4 +118,67 @@ function show_pnotify(title, text, type) {
         delay: 1000,
         addclass: "stack-topleft",
     });
+}
+
+
+function forget(email, captcha) {
+	$.ajax({
+	    type: "POST",
+	    url: "/user/forget",
+	    dataType: "json",
+	    data: {
+	        "email":email,
+	        "captcha":captcha,
+	    },
+	    beforeSend:function(){
+	    	// disable button
+	    	disable_button_register()
+	    	// display = none
+	    	$('.cd-user-modal').removeClass('is-visible');
+	    	NProgress.start();
+	    },
+	    complete:function(){
+	    	NProgress.done();
+	    },
+	    success: function(msg) {
+	        if (msg.status == 1){
+	        	show_pnotify("Success!", msg.message, "info")
+	        }else{
+	        	show_pnotify("Failed!", msg.message, "error")
+	        	// play the sound
+	        	$("#error_sound").play()
+	        }
+	    }
+	});
+}
+
+function reset(password, reset_code) {
+	$.ajax({
+	    type: "POST",
+	    url: "/user/reset",
+	    dataType: "json",
+	    data: {
+	        "password":password,
+	        "reset_code":reset_code,
+	    },
+	    beforeSend:function(){
+	    	// disable button
+	    	disable_button_register()
+	    	// display = none
+	    	$('.cd-user-modal').removeClass('is-visible');
+	    	NProgress.start();
+	    },
+	    complete:function(){
+	    	NProgress.done();
+	    },
+	    success: function(msg) {
+	        if (msg.status == 1){
+	        	show_pnotify("Success!", msg.message, "info")
+	        }else{
+	        	show_pnotify("Failed!", msg.message, "error")
+	        	// play the sound
+	        	$("#error_sound").play()
+	        }
+	    }
+	});
 }
