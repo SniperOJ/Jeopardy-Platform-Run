@@ -174,6 +174,8 @@ function reset(password, reset_code) {
 	    success: function(msg) {
 	        if (msg.status == 1){
 	        	show_pnotify("Success!", msg.message, "info")
+	        	// redirect to user login success page
+	        	window.location.href='/';
 	        }else{
 	        	show_pnotify("Failed!", msg.message, "error")
 	        	// play the sound
