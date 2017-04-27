@@ -613,7 +613,7 @@
         $.ajax({
             type: "GET",
             url: url,
-            dataType: "json",
+            dataType: "text",
             beforeSend:function(){
                 disable_button_login()
                 $('.cd-user-modal').removeClass('is-visible');
