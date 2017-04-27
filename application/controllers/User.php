@@ -801,6 +801,8 @@ class User extends CI_Controller {
             )));
         }
 
+        var_dump("expression");
+        die();
         $user_id = $this->user_model->get_user_id_by_reset_code($reset_code);
         $new_salt = $this->get_salt();
 
@@ -817,6 +819,8 @@ class User extends CI_Controller {
         ));
 
         // destory reset_code
+        // 因为这里 destory 掉了 reset code 也就是说
+        // 一旦被成功使用 , 就消失了 , 因此不需要再进行判断
         $this->destory_reset_code($user_id);
 
         // set session
