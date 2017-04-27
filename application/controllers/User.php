@@ -818,6 +818,7 @@ var_dump("1");
         ));
 
 var_dump("3");
+die();
         // destory reset_code
         // 因为这里 destory 掉了 reset code 也就是说
         // 一旦被成功使用 , 就消失了 , 因此不需要再进行判断
