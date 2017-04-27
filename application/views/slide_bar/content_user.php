@@ -643,6 +643,10 @@
                     form_modal.addClass('is-visible');
                     $(".cd-form").addClass('is-selected');
 
+
+                    // show markdown 
+                    show_markdown("markdown-container")
+
                     //关闭弹出窗口
                     $('.cd-submit-modal').on('click', function(event){
                         if( $(event.target).is(form_modal) || $(event.target).is('.cd-close-form') ) {
@@ -916,12 +920,14 @@
 
 
 <script type="text/javascript">
+function show_markdown(elem) {
   var markdown = new SimpleMDE({
-    element: document.getElementById("markdown-container"),
+    element: document.getElementById(elem),
     spellChecker: false,
     autosave: {
       enabled: true,
       unique_id: "demo2",
     },
   });
+}
 </script>
