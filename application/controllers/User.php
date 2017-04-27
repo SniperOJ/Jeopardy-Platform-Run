@@ -828,7 +828,7 @@ class User extends CI_Controller {
         }
         echo json_encode(array(
             'status' => 1, 
-            'message' => '重置密码成功!',
+            'message' => '重置密码成功!即将跳转到您的主页!',
         ));
 
 
