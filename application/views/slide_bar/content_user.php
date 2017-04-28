@@ -643,10 +643,10 @@
                     form_modal.addClass('is-visible');
                     $(".cd-form").addClass('is-selected');
 
-                    $("#markdown-container").html('```json\n' + html + '\n```');
+                    // $("#markdown-container").html('```json\n' + html + '\n```');
 
                     // show markdown 
-                    show_markdown("markdown-container")
+                    // show_markdown("markdown-container")
 
                     //关闭弹出窗口
                     $('.cd-submit-modal').on('click', function(event){
@@ -766,7 +766,7 @@
         html += '<h3>' + '资源 : ' + resource + '</h3>';
         html += '<h3>' + '参考资料 : ' + challenge_document + '</h3>';
         html += '<h3>' + '题目提供者 : ' + author_name + '</h3>';
-        html += '<textarea id="markdown-container"># Mardkwon!Test</textarea>';
+        // html += '<textarea id="markdown-container"># Mardkwon!Test</textarea>';
 
 
 
