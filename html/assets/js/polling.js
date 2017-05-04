@@ -69,7 +69,7 @@ function show_process()
                 }
                 // play sound only once
                 if (sound_flag){
-                    $('#message_sound')[0].play()
+                    // $('#message_sound')[0].play()
                 }
             }
         });

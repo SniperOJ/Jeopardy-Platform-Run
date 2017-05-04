@@ -70,7 +70,7 @@ function login(username, password, captcha){
 	    	}else{
 	    		show_pnotify("Failed!", msg.message, "error")
 	    		// play the sound
-	    		$("#error_sound")[0].play()
+	    		// $("#error_sound")[0].play()
 	    	}
 	    }
 	});
@@ -104,7 +104,7 @@ function register(username, password, email, college, captcha){
 	        }else{
 	        	show_pnotify("Failed!", msg.message, "error")
 	        	// play the sound
-	        	$("#error_sound").play()
+	        	// $("#error_sound").play()
 	        }
 	    }
 	});
@@ -146,7 +146,7 @@ function forget(email, captcha) {
 	        }else{
 	        	show_pnotify("Failed!", msg.message, "error")
 	        	// play the sound
-	        	$("#error_sound").play()
+	        	// $("#error_sound").play()
 	        }
 	    }
 	});
@@ -179,7 +179,7 @@ function reset(password, reset_code) {
 	        }else{
 	        	show_pnotify("Failed!", msg.message, "error")
 	        	// play the sound
-	        	$("#error_sound").play()
+	        	// $("#error_sound").play()
 	        }
 	    }
 	});
