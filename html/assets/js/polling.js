@@ -52,6 +52,7 @@ function show_process()
                 var sound_flag = false;
                 for(var i in msg){
                     var index = get_index(i, data_shown);
+                    console.log(index)
                     if (index == -1){
                         console.log("新通知!")
                         sound_flag = true;
