@@ -229,8 +229,6 @@ class User_model extends CI_Model {
 		        ->limit($top)
 		        ->get('users');
 		$result = $query->result_array();
-		var_dump($result);
-		die();
 		return $result;
 	}
 }
