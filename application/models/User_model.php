@@ -226,7 +226,7 @@ class User_model extends CI_Model {
 		$query = $this->db->select(array('username','score',))
 		        ->where('score >', 0)
 		        ->order_by('score','desc')
-		        ->limit(0, $top)
+		        ->limit($top)
 		        ->get('users');
 		$result = $query->result_array();
 		var_dump($result);
