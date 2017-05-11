@@ -51,8 +51,7 @@ function show_process()
                 var size = msg.length
                 var sound_flag = false;
                 for(var i in msg){
-                    str_data = JSON.stringify(i);
-                    var index = get_index(str_data, data_shown);
+                    var index = get_index(i, data_shown);
                     if (index == -1){
                         sound_flag = true;
                         // show
@@ -65,7 +64,7 @@ function show_process()
                         show_stack_topleft('info', challenge_name, content);
 
                         // add to shown
-                        data_shown.push(str_data);
+                        data_shown.push(i);
                         console.log(data_shown);
                     }
                 }
