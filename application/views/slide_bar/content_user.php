@@ -79,10 +79,6 @@
 
 <script type="text/javascript" src="/assets/js/polling.js"></script>
 
-<script type="text/javascript">
-  show_process();
-</script>
-
 <h2 id="title"><i class="fa fa-dashboard"></i>SniperOJ</h2>
 <ul id="toggle" class="slide-bar-left">
 
