@@ -65,7 +65,7 @@ function show_process()
                         show_stack_topleft('info', challenge_name, content);
 
                         // add to shown
-                        data_shown += str_data;
+                        data_shown.push(str_data);
                         console.log(data_shown);
                     }
                 }
