@@ -51,10 +51,9 @@ function show_process()
                 var size = msg.length
                 var sound_flag = false;
                 for(var i in msg){
-                    var index = get_index(i, data_shown);
-                    console.log(index)
+                    str_data = JSON.stringify(i);
+                    var index = get_index(str_data, data_shown);
                     if (index == -1){
-                        console.log("新通知!")
                         sound_flag = true;
                         // show
                         var username = msg[i]['username'];
@@ -66,7 +65,7 @@ function show_process()
                         show_stack_topleft('info', challenge_name, content);
 
                         // add to shown
-                        data_shown += i;
+                        data_shown += str_data;
                     }
                 }
                 // play sound only once
