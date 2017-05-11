@@ -915,4 +915,11 @@ class User extends CI_Controller {
             header('Location:/');
         }
     }
+
+    public function rank_bot()
+    {
+        $top = 10;
+        $score_data = $this->user_model->get_rank($top);
+        return json_encode($score);
+    }
 }

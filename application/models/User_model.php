@@ -220,4 +220,15 @@ class User_model extends CI_Model {
 	    $result = $query->row_array();
 	    return $result['submit_time'];
 	}
+
+	public function get_rank($top)
+	{
+		$query = $this->db->select(array('username','score',))
+		        ->where('score >', 0)
+		        ->order_by('score','desc')
+		        ->limit(0, $top)
+		        ->get('users');
+		$result = $query->result_array();
+		return $result;
+	}
 }
