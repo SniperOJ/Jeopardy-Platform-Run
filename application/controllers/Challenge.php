@@ -498,7 +498,7 @@ class Challenge extends CI_Controller {
 
     public function new_progress_qqbot()
     {
-        $offset_time = 20; // 20 s
+        $offset_time = 30; // 30 s
         echo json_encode($this->challenge_model->get_progress($offset_time));
     }
 }
