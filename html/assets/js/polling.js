@@ -65,7 +65,7 @@ function show_process()
 
                         // add to shown
                         data_shown.push(i);
-                        console.log(data_shown);
+                        // console.log(data_shown);
                     }
                 }
                 // play sound only once

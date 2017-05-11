@@ -748,7 +748,7 @@
         }else{
           resource = "无"
         }
-        console.log(resource)
+        // console.log(resource)
         // build
         var html = '';
         html += '<div class="cd-submit-modal">';
