@@ -916,7 +916,7 @@ class User extends CI_Controller {
         }
     }
 
-    public function rank_bot()
+    public function rank_qqbot()
     {
         $top = 10;
         $score_data = $this->user_model->get_rank($top);
