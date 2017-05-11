@@ -53,6 +53,7 @@ function show_process()
                 for(var i in msg){
                     var index = get_index(i, data_shown);
                     if (index == -1){
+                        console.log("新通知!")
                         sound_flag = true;
                         // show
                         var username = msg[i]['username'];
