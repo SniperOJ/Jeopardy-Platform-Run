@@ -920,6 +920,6 @@ class User extends CI_Controller {
     {
         $top = 10;
         $score_data = $this->user_model->get_rank($top);
-        return json_encode($score_data);
+        echo json_encode($score_data);
     }
 }
