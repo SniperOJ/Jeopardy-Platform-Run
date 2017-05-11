@@ -59,6 +59,7 @@ $route['challenge/submit'] = 'challenge/submit';
 $route['challenge/delete/(:num)'] = 'challenge/delete_challenge';
 $route['challenge/progress'] = 'challenge/progress';
 $route['challenge/progress_qqbot'] = 'challenge/progress_qqbot';
+$route['challenge/new_progress_qqbot'] = 'challenge/new_progress_qqbot';
 $route['challenge/(:any)'] = 'challenge/view';
 $route['challenge'] = 'challenge/view';
 
