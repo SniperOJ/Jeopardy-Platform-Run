@@ -560,7 +560,7 @@ class User extends CI_Controller {
         $this->set_session_by_user_id($user_id);
 
         /* TODO 暂时先重定向到 /usr/login */
-        header("Location: /user/login");
+        header("Location: /");
     }
 
     public function verify_captcha($captcha)
