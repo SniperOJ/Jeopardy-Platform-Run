@@ -5,7 +5,7 @@ SniperOJ
 
 Links : 
 ---
-> Write-UPs : https://github.com/wangyihang/SniperOJ-WriteUPs  
+> Write-UPs and Challenges' Source code : https://github.com/wangyihang/SniperOJ-WriteUPs  
 > Dockerfiles : https://github.com/SniperOJ/Dockerfile  
 
 
