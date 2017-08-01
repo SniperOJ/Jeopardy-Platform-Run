@@ -8,6 +8,10 @@ Links :
 > Write-UPs and Challenges' Source code : https://github.com/wangyihang/SniperOJ-WriteUPs  
 > Dockerfiles : https://github.com/SniperOJ/Dockerfile  
 
+Install : 
+---
+> [Installl Guide](https://github.com/WangYihang/SniperOJ/blob/master/INSTALL.md)
+
 
 Contributors : 
 ---
