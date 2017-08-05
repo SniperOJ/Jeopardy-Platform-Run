@@ -20,6 +20,7 @@ sudo git clone https://github.com/WangYihang/SniperOJ.git /var/www/
 sudo apt install apache2
 sudo apt install php7.0
 sudo apt install php7.0-gd
+sudo apt install php7.0-mysqli
 sudo apt install libapache2-mod-php7.0
 sudo apt install mysql-server
 ```
