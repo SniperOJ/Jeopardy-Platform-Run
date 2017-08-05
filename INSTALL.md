@@ -71,13 +71,18 @@ database
 
 十一. 配置发信邮箱
 ```
-cp email.php.example email.php
-根据你的邮件服务提供商的配置说明进行配置
+1.cp email.php.example email.php
+
+2.根据你的邮件服务提供商的配置说明进行配置
 主要需要修改 : 
 smtp_host
 smtp_port
 smtp_user
 smtp_pass
+
+3.然后vi /var/www/application/controllers/User.php
+搜索到admin@sniperoj.cn
+将其替换为自己邮箱
 ```
 
 十二. 重启服务
