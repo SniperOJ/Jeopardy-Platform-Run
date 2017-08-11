@@ -8,6 +8,10 @@ Links :
 > Write-UPs and Challenges' Source code : https://github.com/wangyihang/SniperOJ-WriteUPs  
 > Dockerfiles : https://github.com/SniperOJ/Dockerfile  
 
+Install : 
+---
+> [Installl Guide](https://github.com/WangYihang/SniperOJ/blob/master/INSTALL.md)
+
 
 Contributors : 
 ---
@@ -80,6 +84,7 @@ TODO :
 - [x] 排行榜增加更多信息 , 答题数 , 正确率等等  
 - [x] 题目主页  
 - [ ] 战况模块  
+- [ ] 将写死的变量复活
 
 Licenses
 ---
