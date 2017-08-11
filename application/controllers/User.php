@@ -103,14 +103,14 @@ class User extends CI_Controller {
     public function send_active_code($active_code, $target)
     {
         $subject = '[No Reply] Sniper OJ Register Email';
-        $content = "Thank you for registering this website!\nyou can activate your account by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.cn/user/active/".$active_code."\n";
+        $content = "Thank you for registering this website!\nyou can activate your account by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.com/user/active/".$active_code."\n";
         return $this->send_email($subject, $content, $target);
     }
 
     public function send_reset_code($reset_code, $target)
     {
         $subject = '[No Reply] Sniper OJ Reset Password Email';
-        $content = "you can reset your password by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.cn/user/verify/".$reset_code."\n";
+        $content = "you can reset your password by visiting the following link, which is valid for 2 hours.\nYour active code : http://www.sniperoj.com/user/verify/".$reset_code."\n";
         return $this->send_email($subject, $content, $target);
     }
 
