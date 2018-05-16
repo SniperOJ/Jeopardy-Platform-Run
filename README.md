@@ -1,12 +1,14 @@
 SniperOJ  
 ---
 
-> 一个开源的 CTF 训练平台
+> 一个开源的 CTF 训练平台  
+
+> A [Django Version](https://github.com/SniperOJ/SniperOJ-Platform) Is Under Developement
 
 Links : 
 ---
-> Write-UPs and Challenges' Source code : https://github.com/wangyihang/SniperOJ-WriteUPs  
-> Dockerfiles : https://github.com/SniperOJ/Dockerfile  
+> Write-UPs and Challenges' Source code : https://github.com/SniperOJ/SniperOJ-Challenge-Writeups  
+> Dockerfiles : https://github.com/SniperOJ/CTF-Challenge-Dockerfiles  
 
 Install : 
 ---
