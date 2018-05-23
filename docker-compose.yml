@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    mysql:
+        image: mysql
+        volumes:
+            - ./db-volume:/var/lib/mysql
+            - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+        environment:
+            - MYSQL_DATABASE=sniperoj
+            - MYSQL_ROOT_PASSWORD=root
+    web:
+        build: .
+        depends_on:
+            - mysql
+        ports:
+            - '80:80'
+        volumes:
+            - ./src:/var/www
+        stdin_open: true
+        tty: true
