@@ -1,4 +1,4 @@
 db-volume/
 src/application/config/database.php
 src/application/config/email.php
-src/html/assets/captcha/
+src/html/assets/captcha/*.jpg

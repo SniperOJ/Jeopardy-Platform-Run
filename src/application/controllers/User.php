@@ -89,7 +89,7 @@ class User extends CI_Controller {
     /* Send email */
     public function send_email($subject, $content, $target)
     {
-        $this->email->from('admin@sniperoj.cn', 'admin');
+        $this->email->from('admin@sniperoj.com', 'admin');
         $this->email->to($target);
         $this->email->subject($subject);
         $this->email->message($content);
