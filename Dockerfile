@@ -7,6 +7,11 @@ MAINTAINER Wang Yihang "wangyihanger@gmail.com"
 # update
 RUN apt update
 
+# Set timezone
+RUN apt install -y tzdata
+RUN echo "Asia/Shanghai" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
+
 # Setup Server Environment
 RUN apt install -y \
     apache2 \
@@ -16,7 +21,7 @@ RUN apt install -y \
     php-mysql
 
 RUN phpenmod gd && \
-	a2enmod rewrite
+    a2enmod rewrite
 
 # Entry point
-ENTRYPOINT service apache2 start && /bin/bash
+ENTRYPOINT service apache2 restart && /bin/bash
