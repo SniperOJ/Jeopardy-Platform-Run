@@ -1,9 +1,9 @@
 SniperOJ  
 ---
 
-> 一个开源的 CTF 训练平台  
-
-> A [Django Version](https://github.com/SniperOJ/Platform) Is Under Developement
+```
+An open source CTF platform  
+```
 
 Links : 
 ---
@@ -17,7 +17,7 @@ Install :
 
 Contributors : 
 ---
-平台贡献者包括但不限于以下同学 , 真心感谢大家的无私帮助!
+Platform contributors include but are not limited to the following students, I really appreciate everyone's selfless help!
 ```
 呆呆枫(发现平台严重逻辑漏洞)
 ccc(对网站前端提出建议)
