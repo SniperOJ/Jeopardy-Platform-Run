@@ -1,7 +1,7 @@
 # SniperOJ
 [![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/ctf_platforms.html#SniperOJ%20Platform)
-[![GitHub stars](https://img.shields.io/github/stars/SniperOJ/Platform.svg)](https://github.com/SniperOJ/Platform/stargazers)
-[![GitHub license](https://img.shields.io/github/license/SniperOJ/Platform.svg)](https://github.com/SniperOJ/Platform)
+[![GitHub stars](https://img.shields.io/github/stars/SniperOJ/Platform-Run.svg)](https://github.com/SniperOJ/Platform/stargazers)
+[![GitHub license](https://img.shields.io/github/license/SniperOJ/Platform-Run.svg)](https://github.com/SniperOJ/Platform)
 
 ```
 An open source CTF platform  
