@@ -1,22 +1,21 @@
-SniperOJ  
----
+# SniperOJ
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/ctf_platforms.html#SniperOJ%20Platform)
+[![GitHub stars](https://img.shields.io/github/stars/SniperOJ/Platform.svg)](https://github.com/SniperOJ/Platform/stargazers)
+[![GitHub license](https://img.shields.io/github/license/SniperOJ/Platform.svg)](https://github.com/SniperOJ/Platform)
 
 ```
 An open source CTF platform  
 ```
 
-Links : 
----
+#### Links : 
 > Write-UPs and Challenges' Source code : https://github.com/SniperOJ/Challenge-Writeups  
 > Dockerfiles : https://github.com/SniperOJ/Challenge-Dockerfiles
 
-Install : 
----
+#### Install : 
 > [Installl Guide](INSTALL.md)
 
 
-Contributors : 
----
+#### Contributors : 
 Platform contributors include but are not limited to the following students, I really appreciate everyone's selfless help!
 ```
 呆呆枫(发现平台严重逻辑漏洞)
@@ -28,9 +27,7 @@ v1ll4n(提供题目 Web300-嚓嚓咦 && web300-py的交易)(等有时间就把�
 ...
 ```
 
-TODO :
----
-
+#### TODO :
 - [ ] 修改个人信息功能  
 - [ ] 组队功能  
 - [ ] 显示题目的解题名单  
@@ -88,8 +85,7 @@ TODO :
 - [ ] 战况模块  
 - [ ] 将写死的变量复活
 
-Licenses
----
+#### Licenses
 ```
 Copyright (C) <2017> <wangyihanger@gmail.com>
 
