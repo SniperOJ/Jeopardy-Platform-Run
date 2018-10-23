@@ -8,8 +8,9 @@ An open source CTF platform
 ```
 
 #### Links : 
-> Write-UPs and Challenges' Source code : https://github.com/SniperOJ/Challenge-Writeups  
-> Dockerfiles : https://github.com/SniperOJ/Challenge-Dockerfiles
+* Writeups: https://github.com/SniperOJ/Writeups
+* Challenges: https://github.com/SniperOJ/Challenges
+* Dockerfiles : https://github.com/SniperOJ/Dockerfiles
 
 #### Install : 
 > [Installl Guide](INSTALL.md)
